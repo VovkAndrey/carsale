@@ -1,8 +1,6 @@
 <?php
 /**
- * Template Name: Bootstrap Kitchen Sink
- *
- * This is the template that displays all Bootstrap elements.
+ * Template Name: Default Page Template
  *
  * @package Beetroot
  */
