@@ -1,0 +1,376 @@
+/*
+Theme Name: Beetroot
+Theme URI: http://underscores.me/
+Author: Beetroot Project Delivery Unit
+Author URI: http://beetroot.se/
+Description: Beetroot Barebone Development theme
+Version: 1.0.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: beetroot
+
+Beetroot is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Mixins
+# Variables
+# Typography
+# Wordpress Classes Styling
+# Parts
+# Forms
+# Comments
+## Layout
+# Header
+# Footer
+# Sidebar
+# 404 page
+# Search page
+# Single post
+# Post archive
+# RTL-specific style
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+>>> FRAMEWORKS:
+----------------------------------------------------------------
+# SUSY:
+# @import "framework/susy";
+
+# FOUNDATION:
+# @import "framework/foundation";
+# @include foundation-everything();
+# or @include foundation-everything($flex:true); if you want to use flexbox layout
+# All Foundation SCSS settings can be changed inside settings/_settings.scss
+#
+
+# BOOTSTRAP:
+# @import "framework/bootstrap";
+# All Bootstrap SCSS settings can be changed inside bootstrap/_variables.scss
+#
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Mixins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Mixins
+
+  # Learn more about Sass mixins here: http://sass-lang.com/guide#topic-6
+ --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Variables
+
+  # Learn more about Sass variables here: http://sass-lang.com/guide#topic-2
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+textarea {
+  line-height: 1.5; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both; }
+
+p {
+  margin-bottom: 1.5em; }
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic; }
+
+blockquote {
+  margin: 0 1.5em; }
+
+address {
+  margin: 0 0 1.5em; }
+
+pre {
+  background: #eee;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em; }
+
+code,
+kbd,
+tt,
+var {
+  font-size: 15px;
+  font-size: 0.9375rem; }
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help; }
+
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none; }
+
+big {
+  font-size: 125%; }
+
+/*--------------------------------------------------------------
+# Wordpress Classes Styling
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Default Wordpress elements styling
+
+  # Learn more: https://codex.wordpress.org/CSS
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden; }
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */ }
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+  outline: 0; }
+
+/*--------------------------------------------------------------
+# Alignments
+--------------------------------------------------------------*/
+.alignnone {
+  margin: 5px 20px 20px 0; }
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto; }
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px; }
+
+a img.alignnone {
+  margin: 5px 20px 20px 0; }
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0; }
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.wp-caption {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  max-width: 96%;
+  /* Image does not overflow the content area */
+  padding: 5px 3px 10px;
+  text-align: center; }
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0; }
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0; }
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px; }
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto; }
+
+.wp-caption p.wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px; }
+
+.gallery-caption {
+  display: block;
+  border: 1px solid #CCC;
+  font-size: 11px; }
+
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+.widget {
+  margin: 0 0 1.5em; }
+
+/* Make sure select elements fit in widgets. */
+.widget select {
+  max-width: 100%; }
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Posts and pages
+--------------------------------------------------------------*/
+.sticky {
+  display: block; }
+
+.hentry {
+  margin: 0 0 1.5em; }
+
+.byline,
+.updated:not(.published) {
+  display: none; }
+
+.group-blog .byline,
+.single .byline {
+  display: inline; }
+
+.entry-content,
+.entry-summary,
+.page-content {
+  margin: 1.5em 0 0; }
+
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em; }
+
+/*--------------------------------------------------------------
+## Asides
+--------------------------------------------------------------*/
+.archive .format-aside .entry-title,
+.blog .format-aside .entry-title {
+  display: none; }
+
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+.comment-content a {
+  word-wrap: break-word; }
+
+.bypostauthor {
+  display: block; }
+
+/*--------------------------------------------------------------
+# Parts
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Parts (Button, inputs, forms, etc)
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Forms
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Comments
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+>>> LAYOUT:
+----------------------------------------------------------------
+
+# Header
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Header
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Sidebar
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# 404 Page
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Search Page
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+
+
+
+# Import posts and pages layout styles here:
+
+
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  # Footer
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# RTL-specific styles
+--------------------------------------------------------------*/
+/*
+Theme Name: Beetroot
+
+Adding support for language written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+https://codex.wordpress.org/Right_to_Left_Language_Support
+
+*/
+/*
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+*/
+
+/*# sourceMappingURL=style.css.map */
