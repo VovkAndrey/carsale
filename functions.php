@@ -49,7 +49,7 @@ add_action('login_head', 'loginCSS');
 
 
 
-function wpfme_has_sidebar($classes) {
+function wp_has_sidebar($classes) {
     if (is_active_sidebar('sidebar')) {
         // add 'class-name' to the $classes array
         $classes[] = 'has_sidebar';
@@ -57,7 +57,7 @@ function wpfme_has_sidebar($classes) {
     // return the $classes array
     return $classes;
 }
-add_filter('body_class','wpfme_has_sidebar');
+add_filter('body_class','wp_has_sidebar');
 
 
 
@@ -67,8 +67,8 @@ remove_action('wp_head', 'wp_generator');
 
 
 // Obscure login screen error messages
-function wpfme_login_obscure(){ return '<strong>Sorry</strong>: Think you have gone wrong somwhere!';}
-add_filter( 'login_errors', 'wpfme_login_obscure' );
+function wp_login_obscure(){ return '<strong>Error</strong>: wrong username or password';}
+add_filter( 'login_errors', 'wp_login_obscure' );
 
 
 // Disable the theme / plugin text editor in Admin

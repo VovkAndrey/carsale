@@ -21,9 +21,6 @@
         endif;
         ?>
     </nav><!-- .nav-primary -->
-    <div class="site-info">
-        <span class="sep"> | </span>
-    </div><!-- .site-info -->
 </footer><!-- #colophon -->
 </div><!-- #page -->
 
