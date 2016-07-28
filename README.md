@@ -139,8 +139,88 @@ The `lib` folder contains php files, connected to `functions.php`:
 * `widget-areas.php` - serves for registering menu areas.
 
 ### 5. Workflow features
+
+#### 5.1 Helper Classes
+
 The theme contains javascript library, that detects user browser, OS and displays their names as classes for `<body>` tag. This allows you to easily debug all device or browser-specific ussies.
 Also, if sidebar is active, `<body>` will have class `has_sidebar`.
+
+#### 5.2 Working with breakpoints
+
+The theme have default mixin that gives you fast and easy way to interact with responsive breakpoints<br>
+
+```scss
+@mixin breakpoint($point) {
+    // Extra small devices (320px +)
+    @if $point == xs {
+         @media only screen and (min-width : 320px){
+            @content;
+        }
+    }
+    // Small devices (480px +)
+    @else if $point == sm {
+         @media only screen and (min-width : 480px){
+            @content;
+        }
+    }
+    // Tablets (768px +)
+    @else if $point == tb {
+         @media only screen and (min-width : 768px){
+            @content;
+        }
+    }
+    // Medium Devices, Notebooks (992px +)
+    @else if $point == md {
+         @media only screen and (min-width : 992px){
+            @content;
+        }
+    }
+    // Large Devices, Wide Screens
+    @else if $point == desktop {
+         @media only screen and (min-width : 1200px){
+            @content;
+        }
+    }
+}
+```
+
+You can add breakpoints directly into css block by adding 
+
+```scss
+@include breakpoint ( /* breakpoint name */ ) { /* breakpoint-specific styles */ }
+```
+
+Example:
+
+![Breakpoint include](http://i.imgur.com/7uIM947.gif)
+
+Compiled result:
+```css
+.myfancyblock {
+  width: 100%;
+}
+@media only screen and (min-width : 992px){
+  .myfancyblock {
+    width: 50%;
+  }
+}
+```
+
+If you are PhpStorm user, you can make this process even faster, by adding a [live template](https://www.jetbrains.com/help/phpstorm/10.0/live-templates.html). For this, go to `File > Settings > Editor > Live Templates`, add new template, then enter an abbreviation (for example, word `breakpoint`) and description. In "Template text" field add the following code:
+
+```
+@include breakpoint ( $END$ ) {}
+```
+
+Then press "Change" at the bottom and select "CSS".
+
+Example:
+
+![Live template](http://i.imgur.com/cgdz3SS.gif)
+
+Now you are able to call breakpoint mixin by simply typing first few letters of its abbreviation and pressing enter:
+
+![Live template example](http://i.imgur.com/HonCC3Y.gif)
 
 ## Test your project
 * [Dummy content generator wpfill.me](http://www.wpfill.me/)
