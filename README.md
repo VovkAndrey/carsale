@@ -137,6 +137,7 @@ The `lib` folder contains php files, connected to `functions.php`:
 * `theme-support.php` - serves for registering theme support for languages, menus, post-thumbnails, post-formats etc. Most of them are already enabled.
 * `vc_shortcodes.php` - serves for registering VisualComposer modules.
 * `widget-areas.php` - serves for registering menu areas.
+
 ### 5. Workflow features
 The theme contains javascript library, that detects user browser, OS and displays their names as classes for `<body>` tag. This allows you to easily debug all device or browser-specific ussies.
 Also, if sidebar is active, `<body>` will have class `has_sidebar`.
