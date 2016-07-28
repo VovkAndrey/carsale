@@ -62,13 +62,13 @@ const uploadFolder = '/wp-content/themes/beetroot-theme';
 
 To enable one of the pre-installed frameworks, go to theme folder, then open framework-specific folder and simply copy its contents to root theme folder:
 
-![Framework Setup](http://i.imgur.com/NZdaUCsh.gif)
+![Framework Setup](http://i.imgur.com/NZdaUCs.gif)
 
 Then navigate to main scss file
 `assets\src\scss\style.scss`
 and uncomment import command for this framework:
 
-![Framework SCSS](http://i.imgur.com/0QVlqdch.gif)
+![Framework SCSS](http://i.imgur.com/0QVlqdc.gif)
 
 ### 4. Run Gulp
 
