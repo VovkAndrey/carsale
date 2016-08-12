@@ -1,5 +1,5 @@
 # Beetroot Development Theme
-This is a starter-theme for WordPress based on [Underscores](http://underscores.me/) that inclides three most popular Front-End frameworks: [Bootstrap](http://getbootstrap.com/), [ZURB Foundation](http://foundation.zurb.com/) and [Susy](http://susy.oddbird.net/). The purpose of this theme, is to act as a small and handy toolbox that contains the essentials needed to build any design, and its meant to be a starting point, not the final product.
+This is a starter-theme for WordPress based on [Underscores](http://underscores.me/) that includes three most popular Front-End frameworks: [Bootstrap](http://getbootstrap.com/), [ZURB Foundation](http://foundation.zurb.com/) and [Susy](http://susy.oddbird.net/). The purpose of this theme, is to act as a small and handy toolbox that contains the essentials needed to build any design, and its meant to be a starting point, not the final product.
 
 ## Requirements
 
