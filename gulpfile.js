@@ -51,6 +51,8 @@ var ftp = require('ftp'); // FTP (https://github.com/mscdex/node-ftp)
 var watch = require('gulp-watch'); // Watcher
 var browserSync = require("browser-sync"); // Browser Sync
 
+var notify = require("gulp-notify");
+
 /* ---------------- Plugins Configuration ---------------- */
 
 // Local files array for watcher
@@ -68,11 +70,12 @@ gulp.task('sass', function () {
             .pipe(sourcemaps.init())
             .pipe(sass({
                 errLogToConsole: true,
-                style: 'compressed',
+                outputStyle: 'compressed',
                 precision: 10
             }).on('error', sass.logError))
             .pipe(autoprefixer(autoprefixerOptions))
             .pipe(sourcemaps.write('.'))
+            .pipe(notify("SCSS Compiled"));
             .pipe(gulp.dest('assets/dist/css'));
     })
 });
@@ -84,6 +87,7 @@ gulp.task("javascript", function () {
             .pipe(concat("global.js", {
                 newLine: ';\n'
             }))
+            .pipe(notify("JS Compiled"));
             .pipe(gulp.dest("assets/dist/javascript"));
     })
 });
@@ -99,6 +103,7 @@ gulp.task('imgmin', function () {
                 }],
                 use: [pngquant()]
             }))
+            .pipe(notify("Images Compressed"));
             .pipe(gulp.dest('assets/dist/img'))
     })
 });
@@ -133,6 +138,7 @@ gulp.task('sftp-deploy-watch', function () {
                     user: uploadUser,
                     pass: uploadPass
                 }))
+                .pipe(notify("Files uploaded via SFTP"));
         });
 });
 
@@ -174,6 +180,7 @@ gulp.task('ftp-deploy-watch', function () {
                 c.end();
             }).on('close', function(){
                 process.stdout.write('Successfully uploaded!\n');
+                notify("Files uploaded via FTP");
                 reload();
             } );
             // Init connection

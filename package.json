@@ -1,11 +1,8 @@
 {
   "name": "Beetroot",
-  "version": "1.0.0",
-  "description": "Beetroot dev theme",
+  "version": "1.1.2",
+  "description": "Beetroot Starter Theme",
   "main": "gulpfile.js",
-  "dependencies": {
-    "imagemin-pngquant": "^4.2.0"
-  },
   "devDependencies": {
     "browser-sync": "^2.11.0",
     "ftp": "^0.3.10",
@@ -13,17 +10,19 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat-util": "^0.5.5",
     "gulp-imagemin": "^2.4.0",
+    "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.1.1",
     "gulp-sftp": "^0.1.5",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-watch": "^4.3.5"
+    "gulp-watch": "^4.3.5",
+    "imagemin-pngquant": "^4.2.0"
   },
   "scripts": {
     "test": "gulp local"
   },
   "repository": {
     "type": "git",
-    "url": "none"
+    "url": "http://projects.beetroot.se:8081/borisenko/beetroot-theme"
   },
   "author": "Beetroot Resources",
   "license": "MIT"

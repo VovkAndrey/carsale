@@ -10,7 +10,7 @@
     $(document).ready(function () {
     });
     // Scripts that will run after the whole page is loaded (images, videos, iframes. etc)
-    $(document).on('load', function () {
+    $(window).on('load', function () {
     });
     // Scripts that will run on window resize
     $(window).on('resize', function () {

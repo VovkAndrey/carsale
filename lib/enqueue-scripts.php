@@ -24,26 +24,3 @@ if (!function_exists('beetroot_scripts')) :
 
     add_action('wp_enqueue_scripts', 'beetroot_scripts');
 endif;
-
-// Add attributes to enqueued scripts <script> tag.
-if (!function_exists('edit_scripts')) {
-    function edit_scripts($url)
-    {
-        if (false === strpos($url, '.js')) {
-            return $url;
-        }
-    /*
-     * Use "integrity" and "crossorigin" attributes for jQuery CDN
-     * The integrity and crossorigin attributes are used for Subresource Integrity (SRI) checking.
-     * This allows browsers to ensure that resources hosted on third-party servers have not been tampered with.
-     * Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source. Read more at srihash.org
-     */
-  if (strpos($url, 'jquery-3.0.0.min.js')) {
-      return "$url' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='
-			  crossorigin='anonymous";
-  }
-
-        return $url;
-    }
-    add_filter('clean_url', 'edit_scripts', 11, 1);
-};
