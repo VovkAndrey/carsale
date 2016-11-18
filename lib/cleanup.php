@@ -11,17 +11,14 @@ function beetroot_start_cleanup() {
 	add_action( 'init', 'beetroot_cleanup_head' );
 	// Remove WP version from RSS.
 	add_filter( 'the_generator', 'beetroot_remove_rss_version' );
-	// Remove pesky injected css for recent comments widget.
-	add_filter( 'wp_head', 'beetroot_remove_wp_widget_recent_comments_style', 1 );
 	// Clean up comment styles in the head.
 	add_action( 'wp_head', 'beetroot_remove_recent_comments_style', 1 );
 }
 add_action( 'after_setup_theme','beetroot_start_cleanup' );
 endif;
-/**
- * Clean up head.+
- * ----------------------------------------------------------------------------
- */
+
+// Clean up head.
+
 if ( ! function_exists( 'beetroot_cleanup_head' ) ) :
 function beetroot_cleanup_head() {
 	// EditURI link.
@@ -46,24 +43,24 @@ function beetroot_cleanup_head() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 	// WP version.
 	remove_action( 'wp_head', 'wp_generator' );
-	// Emoji detection script.
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	// Emoji styles.
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );
 }
 endif;
+
+// Remove WP Emoji
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
 // Remove WP version from RSS.
 if ( ! function_exists( 'beetroot_remove_rss_version' ) ) :
 function beetroot_remove_rss_version() { return ''; }
 endif;
-// Remove injected CSS for recent comments widget.
-if ( ! function_exists( 'beetroot_remove_wp_widget_recent_comments_style' ) ) :
-function beetroot_remove_wp_widget_recent_comments_style() {
-	if ( has_filter( 'wp_head', 'wp_widget_recent_comments_style' ) ) {
-	  remove_filter( 'wp_head', 'wp_widget_recent_comments_style' );
-	}
-}
-endif;
+
+
 // Remove injected CSS from recent comments widget.
 if ( ! function_exists( 'beetroot_remove_recent_comments_style' ) ) :
 function beetroot_remove_recent_comments_style() {
@@ -73,15 +70,10 @@ function beetroot_remove_recent_comments_style() {
 	}
 }
 endif;
+
 // Remove inline width and height attributes for post thumbnails
 function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
 	$html = preg_replace( '/(width|height)=\"\d*\"\s/', '', $html );
 	return $html;
 }
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3 );
-// Remove WP Emoji
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-remove_action( 'admin_print_styles', 'print_emoji_styles' );

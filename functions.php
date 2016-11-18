@@ -1,54 +1,49 @@
 <?php
 /**
- * Beetroot functions and definitions.
+ * Theme functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  */
 
-// # Load modules
+// Load modules
 
-// Clean up theme
-require_once __DIR__.'/lib/cleanup.php';
+$theme_includes = [
+  '/lib/cleanup.php',              // Clean up default theme includes
+  '/lib/enqueue-scripts.php',      // Enqueue styles and scripts
+  '/lib/framework.php',            // Css framework related stuff (content width, nav walker class, comments, pagination, etc.)
+  '/lib/theme-support.php',        // Theme support options
+  '/lib/template-tags.php',        // Custom template tags
+  '/lib/menu-areas.php',           // Menu areas
+  '/lib/widget-areas.php',         // Widget areas
+  'lib/customizer.php',            // Theme customizer
+  '/lib/vc_shortcodes.php',        // Visual Composer shortcodes
+  '/lib/jetpack.php'               // Jetpack compatibility file
+];
 
-// Enqueue styles and scripts
-require_once __DIR__.'/lib/enqueue-scripts.php';
+foreach ($theme_includes as $file) {
+  if (!$filepath = locate_template($file)) {
+    trigger_error(sprintf(__('Error locating %s for inclusion', 'beetroot'), $file), E_USER_ERROR);
+  }
 
-// Implement the Custom Header feature.
-require_once __DIR__.'/lib/framework.php';
-
-// Load theme support options
-require_once __DIR__.'/lib/theme-support.php';
-
-// Custom template tags for this theme.
-require_once __DIR__.'/lib/template-tags.php';
-
-// Menu areas
-require_once __DIR__.'/lib/menu-areas.php';
-
-// Widget areas
-require_once __DIR__.'/lib/widget-areas.php';
-
-// Load Visual Composer shortcodes
-require_once __DIR__.'/lib/vc_shortcodes.php';
-
-// Load Jetpack compatibility file.
-require_once __DIR__.'/lib/jetpack.php';
+  require_once $filepath;
+}
+unset($file, $filepath);
 
 
-// Theme the TinyMCE editor
-// You should create custom-editor-style.css in your theme folder
-add_editor_style('custom-editor-style.css');
+// Theme the TinyMCE editor (Copy post/page text styles in this file)
+
+add_editor_style('assets/dist/css/custom-editor-style.css');
 
 
 // Custom CSS for the login page
-// Create wp-login.css in your theme folder
+
 function loginCSS() {
-    echo '<link rel="stylesheet" type="text/css" href="'.get_template_directory_uri('beetroot').'/wp-login.css"/>';
+    echo '<link rel="stylesheet" type="text/css" href="'.get_template_directory_uri('beetroot').'assets/dist/css/wp-login.css"/>';
 }
 add_action('login_head', 'loginCSS');
 
 
-
+// Add body class for active sidebar
 function wp_has_sidebar($classes) {
     if (is_active_sidebar('sidebar')) {
         // add 'class-name' to the $classes array
@@ -58,8 +53,6 @@ function wp_has_sidebar($classes) {
     return $classes;
 }
 add_filter('body_class','wp_has_sidebar');
-
-
 
 // Remove the version number of WP
 // Warning - this info is also available in the readme.html file in your root directory - delete this file!

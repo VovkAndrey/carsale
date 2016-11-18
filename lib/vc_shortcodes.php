@@ -25,7 +25,7 @@ if ( defined( 'WPB_VC_VERSION' ) ) {
             'as_parent' => array('only' => 'testimonial_item'),
             'admin_enqueue_js' => array(get_template_directory_uri() . '../assets/javascript/global.js',
             ),
-            'icon' => array(get_template_directory_uri() . '/images/icon-testimonial_slider.png'),
+            'icon' => array(get_template_directory_uri() . '../assets/images/icon-testimonial_slider.png'),
             'params' => array(
                 array(
                     'type' => 'dropdown',
