@@ -78,7 +78,7 @@ gulp.task('sass', function() {
             }).on('error', sass.logError))
             .pipe(autoprefixer(autoprefixerOptions))
             .pipe(sourcemaps.write('.'))
-            .pipe(notify("SCSS Compiled"));
+            .pipe(notify("SCSS Compiled"))
         .pipe(gulp.dest('assets/dist/css'));
     })
 });
@@ -90,7 +90,7 @@ gulp.task("javascript", function() {
             .pipe(concat("global.js", {
                 newLine: ';\n'
             }))
-            .pipe(notify("JS Compiled"));
+            .pipe(notify("JS Compiled"))
         .pipe(gulp.dest("assets/dist/javascript"));
     })
 });
@@ -106,7 +106,7 @@ gulp.task('imgmin', function() {
                 }],
                 use: [pngquant()]
             }))
-            .pipe(notify("Images Compressed"));
+            .pipe(notify("Images Compressed"))
         .pipe(gulp.dest('assets/dist/img'))
     })
 });
