@@ -156,30 +156,30 @@ gulp.task('ftp-deploy-watch', function() {
             // After FTP connection established:
             ftpConnection.on('ready', function() {
                 // Try to push file to server
-                ftpConnection.put(srcFilePath, destFilePath, function(err) {
-                    // Log error
-                    process.stdout.write('Uploading to => ' + destFilePath + '\n');
-                    if (err) {
-                        // If error matches FTP 550 code (target folder(s) doesnt exist) try recursive MKDIR
-                        if (err['code'] == 550) {
-                            process.stdout.write('One of path dirs doesn\'t exist, attempting to mkdir..\n');
-                            var getFolderStructure = destFilePath.substring(0, destFilePath.lastIndexOf("/") + 1);
-                            ftpConnection.mkdir(getFolderStructure, true, function(err) {
-                                if (err) {
-                                    process.stdout.write(err);
-                                }
-                            });
-                            // Then try to upload file again
-                            ftpConnection.put(srcFilePath, destFilePath, function(err) {
-                                process.stdout.write('Uploading to => ' + destFilePath + '\n');
-                                if (err) {
-                                    process.stdout.write(err);
-                                }
-                            });
-                        }
-                    }
-                });
-                ftpConnection.end();
+            ftpConnection.put(srcFilePath, destFilePath, function(err) {
+                // Log error
+              process.stdout.write('Uploading to => ' + destFilePath + '\n');
+              if (err) {
+                  // If error matches FTP 550 code (target folder(s) doesnt exist) try recursive MKDIR
+                  if (err['code'] == 550) {
+                      process.stdout.write('One of path dirs doesn\'t exist, attempting to mkdir..\n');
+                      var getFolderStructure = destFilePath.substring(0, destFilePath.lastIndexOf("/") + 1);
+                      ftpConnection.mkdir(getFolderStructure, true, function(err) {
+                          if (err) {
+                              process.stdout.write(err);
+                          }
+                      });
+                      // Then try to upload file again
+                      ftpConnection.put(srcFilePath, destFilePath, function(err) {
+                          process.stdout.write('Uploading to => ' + destFilePath + '\n');
+                          if (err) {
+                              process.stdout.write(err);
+                          }
+                      });
+                  }
+              }
+            });
+            ftpConnection.end();
             }).on('close', function() {
                 process.stdout.write('Successfully uploaded!\n');
                 notify("Files uploaded via FTP");
