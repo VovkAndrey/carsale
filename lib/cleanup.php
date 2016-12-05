@@ -1,9 +1,6 @@
 <?php
 /**
  * Clean up WordPress defaults
- *
- * @package Beetroot
- * @since Beetroot 1.0.0
  */
 if ( ! function_exists( 'beetroot_start_cleanup' ) ) :
 function beetroot_start_cleanup() {
@@ -60,7 +57,6 @@ if ( ! function_exists( 'beetroot_remove_rss_version' ) ) :
 function beetroot_remove_rss_version() { return ''; }
 endif;
 
-
 // Remove injected CSS from recent comments widget.
 if ( ! function_exists( 'beetroot_remove_recent_comments_style' ) ) :
 function beetroot_remove_recent_comments_style() {
@@ -72,7 +68,7 @@ function beetroot_remove_recent_comments_style() {
 endif;
 
 // Remove inline width and height attributes for post thumbnails
-function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
+function remove_thumbnail_dimensions( $html ) {
 	$html = preg_replace( '/(width|height)=\"\d*\"\s/', '', $html );
 	return $html;
 }

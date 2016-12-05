@@ -6,11 +6,11 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Beetroot
  */
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">

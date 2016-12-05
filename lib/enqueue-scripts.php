@@ -20,6 +20,12 @@ if (!function_exists('beetroot_scripts')) :
 
     // Enqueue the main JS file.
     wp_enqueue_script('main-javascript', get_stylesheet_directory_uri().'/assets/dist/javascript/global.js', array('jquery'), '1.0.0', true);
+
+    // Comments reply script
+    if ( is_singular() && comments_open() ):
+        wp_enqueue_script( "comment-reply" );
+    endif;
+
     }
 
     add_action('wp_enqueue_scripts', 'beetroot_scripts');

@@ -4,14 +4,13 @@
  *
  * @link https://jetpack.com/
  *
- * @package Beetroot
  */
 
 /**
  * Jetpack setup function.
  *
- * See: https://jetpack.com/support/infinite-scroll/
- * See: https://jetpack.com/support/responsive-videos/
+ * @link {https://jetpack.com/support/infinite-scroll}
+ * @link {https://jetpack.com/support/responsive-videos}
  */
 function beetroot_jetpack_setup() {
 	// Add theme support for Infinite Scroll.

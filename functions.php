@@ -8,16 +8,17 @@
 // Load modules
 
 $theme_includes = [
-  '/lib/cleanup.php',              // Clean up default theme includes
-  '/lib/enqueue-scripts.php',      // Enqueue styles and scripts
-  '/lib/framework.php',            // Css framework related stuff (content width, nav walker class, comments, pagination, etc.)
-  '/lib/theme-support.php',        // Theme support options
-  '/lib/template-tags.php',        // Custom template tags
-  '/lib/menu-areas.php',           // Menu areas
-  '/lib/widget-areas.php',         // Widget areas
-  'lib/customizer.php',            // Theme customizer
-  '/lib/vc_shortcodes.php',        // Visual Composer shortcodes
-  '/lib/jetpack.php'               // Jetpack compatibility file
+  '/lib/cleanup.php',                        // Clean up default theme includes
+  '/lib/enqueue-scripts.php',                // Enqueue styles and scripts
+  '/lib/protocol-relative-theme-assets.php', // Protocol (http/https) relative assets path
+  '/lib/framework.php',                      // Css framework related stuff (content width, nav walker class, comments, pagination, etc.)
+  '/lib/theme-support.php',                  // Theme support options
+  '/lib/template-tags.php',                  // Custom template tags
+  '/lib/menu-areas.php',                     // Menu areas
+  '/lib/widget-areas.php',                   // Widget areas
+  'lib/customizer.php',                      // Theme customizer
+  '/lib/vc_shortcodes.php',                  // Visual Composer shortcodes
+  '/lib/jetpack.php'                         // Jetpack compatibility file
 ];
 
 foreach ($theme_includes as $file) {
