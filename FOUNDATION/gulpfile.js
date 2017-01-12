@@ -119,7 +119,7 @@ gulp.task('copy', function() {
 // Runs copy then runs sass & javascript in parallel
 gulp.task('build', ['clean'], function(done) {
   sequence('copy',
-          ['sass', 'javascript', 'lint'],
+          ['sass', 'javascript'],
           done);
 });
 
