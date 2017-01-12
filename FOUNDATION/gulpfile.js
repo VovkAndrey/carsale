@@ -71,7 +71,7 @@ gulp.task('sass', function() {
       browsers: COMPATIBILITY
     }))
     .pipe(cleanCSS())
-    .pipe($.if(!isProduction, $.sourcemaps.write('.'))
+    .pipe($.if(!isProduction, $.sourcemaps.write('.')))
     .pipe(gulp.dest('assets/dist/css'))
     .pipe(browserSync.stream({match: '**/*.css'}))
     .pipe(notify('Compiled: SCSS'));
