@@ -160,7 +160,7 @@ gulp.task('default', ['build', 'browser-sync'], function() {
     });
 
   // JS Watch
-  gulp.watch(['assets/src/**/*.js'], ['clean:javascript', 'javascript', 'lint'])
+  gulp.watch(['assets/src/**/*.js'], ['clean:javascript', 'javascript'])
     .on('change', function(event) {
       logFileChange(event);
     });
