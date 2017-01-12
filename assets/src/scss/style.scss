@@ -32,7 +32,11 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Post archive
 # RTL-specific style
 --------------------------------------------------------------*/
+// Bootstrap main file
+// @import '../bootstrap';
 
+// Foundation mixins & browser resets
+// @import '../components/foundation-sites/scss/foundation';
 /*--------------------------------------------------------------
 # Mixins
 --------------------------------------------------------------*/

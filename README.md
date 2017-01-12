@@ -1,6 +1,8 @@
 # Beetroot Development Theme
 This is a starter-theme for WordPress based on [Underscores](http://underscores.me/) that includes three most popular Front-End frameworks: [Bootstrap](http://getbootstrap.com/), [ZURB Foundation](http://foundation.zurb.com/) and [Susy](http://susy.oddbird.net/). The purpose of this theme, is to act as a small and handy toolbox that contains the essentials needed to build any design, and its meant to be a starting point, not the final product.
 
+All project dependensies can be added with `bower`, and `wiredep` plugin automatically parses their paths and includes during compilation (Please note that for SCSS you still need to use @import tag to include scss file, but thanks to wiredep you can use shortcuts like `../bootstrap` for example)
+
 ## Requirements
 
 This project uses [Gulp task runner](http://gulpjs.com/) that requires [Node.js](http://nodejs.org) v6.x.x  to be installed on your machine. 
@@ -20,61 +22,37 @@ $ git clone http://projects.beetroot.se:8081/borisenko/beetroot-theme.git
 $ cd beetroot-theme
 $ npm install
 ```
+### 1.2 Install necessary plugins using `bower`:
+```bash
+$ bower install matchHeight --save
+```
 
 ### 2. Setup your gulpfile.js:
 
 #### 2.1 Live reload
-Add your project's URL, so LiveReload can refresh browser as you are working on your code. (this also works great with local servers, such as XAMPP/MAMP, Vagrant, etc.):
+Add your local server URL, so LiveReload can refresh browser as you are working on your code :
 
 ```javascript
-const syncUrl = 'projects.beetroot.se/clientname/projectname'
+var URL = 'localhost/myproject'
 ```
-
-
-#### 2.2 (Optional) FTP/SFTP configuration. You can skip this if you are working locally
-
-Host:
-
-```javascript
-const hostUrl = 'projects.beetroot.se'; 
-```
-
-Login:
-
-```javascript
-const uploadUser = 'your username'; 
-```
-Password:
-
-```javascript
-const uploadPass = 'your pasword'; 
-```
-
-Upload folder:
-
-```javascript
-const uploadFolder = '/wp-content/themes/beetroot-theme'; 
-```
-
 
 
 ### 3. Setup framework
 
 To enable one of the pre-installed frameworks, go to theme folder, then open framework-specific folder and simply copy its contents to root theme folder:
 
-![Framework Setup](http://i.imgur.com/NZdaUCs.gif)
+![Framework Setup](http://i.imgur.com/dqVv2T9.gif)
 
 Then navigate to main scss file
 `assets\src\scss\style.scss`
 and uncomment import command for this framework:
 
-![Framework SCSS](http://i.imgur.com/0QVlqdc.gif)
+![Framework SCSS](http://i.imgur.com/g9saD0q.gif)
 
 ### 4. Run Gulp
 
-While working on your project, run one of Gulp tasks that suits your workflow
-* `gulp local` for local development
-* `gulp ftp` or `gulp sftp` if you are working on remote server. Gulp will upload all changes and reload browser only after last file is successfully uploaded.
+While working on your project, run "watch" task from the NPM: `npm run watch`
+When project is done, run `npm run production` to minify CSS, JS and remove unnecessary sourcemaps
 
 ## Overview
 ### 1. Folder structure
@@ -99,12 +77,21 @@ beetroot-theme/
 ├───languages
 ├───lib
 ├───template-parts
-├───templates
+├───page-templates
 └───vc_templates
 ```
 ### 2. Javascript
-Write all your project's scripts to `assets\src\javascript\scripts.js`
-You dont need to register each Javascript library in Wordpress anymore, simply put them to `assets\src\javascript\plugins` folder, and Gulp will combine them together with `scripts.js` in main `global.js` file, located in `assets\dist\javascript`. 
+Write all your project's scripts to `assets\src\javascript\scripts.js`. Separate modules can be placed inside `assets\src\javascript\plugins` folder (Note that those scripts will be added before scripts.js during concatenation)
+All developer scripts from `assets\src\javascript` folder will be concatenated with `bower` dependensies and plugins.
+Sometimes one of the bower parts doesnt automatically includes (this happens if plugin author didnt added correct tags in bower config). To fix this, add relative path to required JS file to PATHS array in gulpfile:
+```javascript
+// Add custom JS
+PATHS.js.push(
+    'assets/src/javascript/plugins/*.js',
+    'assets/src/javascript/scripts.js',
+    'assets/components/matchHeight/dist/jquery.matchHeight.js' // <= Example
+);
+```
 
 ### 3. SCSS
 All SCSS files are split into four main subfolders:
@@ -112,13 +99,11 @@ All SCSS files are split into four main subfolders:
 ```
 │       └───scss
 │           ├───components
-│           ├───framework
 │           ├───layouts
 │           └───template-parts
 ```
 
 The `components` folder conains secondary styles, such as core Wordpress classes styling, forms, comments, etc. Put any small, reusable styles (buttons, etc) to `_parts.scss`.
-All framework files located in `framework` folder. You can change Bootstrap settings in `bootstrap/_variables.scss`, and Foundation settings in `settings/_settings.scss`.
 The `layouts` folder is a place for all your page/template specific styles (header/footer, single, 404, etc). Try to avoid writing styles directly in `styles.scss`, its main purpose is to connect all your files for compilation via `@import`.
 The `template-parts` folder should contain styles for reusable Wordpress template parts.
 
