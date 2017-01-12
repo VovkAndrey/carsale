@@ -11,6 +11,7 @@ var sequence    = require('run-sequence');
 var colors      = require('colors');
 var del         = require('del');
 var cleanCSS    = require('gulp-clean-css');
+var uglify      = require('gulp-uglify');
 var notify      = require('gulp-notify');
 // More info about Wiredep config: https://github.com/taptapship/wiredep
 var wiredep     = require('wiredep')({
@@ -70,28 +71,10 @@ gulp.task('sass', function() {
       browsers: COMPATIBILITY
     }))
     .pipe(cleanCSS())
-    .pipe($.sourcemaps.write('.'))
+    .pipe($.if(!isProduction, $.sourcemaps.write('.'))
     .pipe(gulp.dest('assets/dist/css'))
     .pipe(browserSync.stream({match: '**/*.css'}))
     .pipe(notify('Compiled: SCSS'));
-});
-
-// Lint all JS files in custom directory
-gulp.task('lint', function() {
-  return gulp.src('assets/src/javascript/scripts.js')
-    .pipe($.jshint())
-    .pipe($.notify(function (file) {
-      if (file.jshint.success) {
-        return false;
-      }
-
-      var errors = file.jshint.results.map(function (data) {
-        if (data.error) {
-          return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
-        }
-      }).join("\n");
-      return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
-    }));
 });
 
 // Combine JavaScript into one file
@@ -115,6 +98,7 @@ gulp.task('javascript', function() {
     .pipe(browserSync.stream())
     .pipe(notify('Compiled: Javascript'));
 });
+
 
 // Copy task
 gulp.task('copy', function() {
