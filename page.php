@@ -1,8 +1,4 @@
 <?php
-/**
- * Template Name: Default Page Template
- *
- */
 
 get_header(); ?>
 
