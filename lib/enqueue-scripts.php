@@ -31,6 +31,6 @@ if (!function_exists('beetroot_scripts')) :
     add_action('wp_enqueue_scripts', 'beetroot_scripts');
 endif;
 
-if ( file_exists( get_template_directory_uri() . '/feedback/feedback.php') ) :
-	require_once get_template_directory_uri() . '/feedback/feedback.php';
+if ( file_exists( get_template_directory() . '/feedback/feedback.php') ) :
+	require_once get_template_directory() . '/feedback/feedback.php';
 endif;
