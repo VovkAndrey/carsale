@@ -8,10 +8,10 @@
 
 (function ($) {
     // Scripts that will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
-    //Uncomment this if you are using Foundation
-    // $(document).ready(function () {
-    //   $(document).foundation();
-    // });
+    $(document).ready(function () {
+        //Uncomment this if you are using Foundation
+        //   $(document).foundation();
+    });
 
     // Scripts that will run after the whole page is loaded (images, videos, iframes. etc)
     $(window).on('load', function () {
