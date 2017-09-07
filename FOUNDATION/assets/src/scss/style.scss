@@ -33,8 +33,20 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Post archive
 # RTL-specific style
 --------------------------------------------------------------*/
-// Bootstrap main file
-// @import '../../components/bootstrap-sass/assets/stylesheets/bootstrap.scss';
+/*--------------------------------------------------------------
+# FOUNDATION SETUP
+# First visit this link http://foundation.zurb.com/sites/docs/sass.html
+--------------------------------------------------------------*/
+//@import '../../components/foundation-sites/scss/util/util';
+//@import 'settings';//Create _settings.scss in current directory
+//@import '../../components/foundation-sites/scss/foundation';
+// Include all the used foundation components below:
+//@include foundation-global-styles;
+//@include foundation-flex-grid;
+//@include foundation-menu;
+//@include foundation-dropdown;
+//@include foundation-dropdown-menu;
+//@include foundation-responsive-embed;
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
