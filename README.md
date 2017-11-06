@@ -14,45 +14,57 @@ $ npm install --global gulp-cli
 
 ## Quickstart
 
-### 1. Clone the repository and install with npm
+### 1. Clone the repository and prepare your theme
 
 ```bash
 $ cd my-wordpress-folder/wp-content/themes/
-$ git clone http://projects.beetroot.se:8081/borisenko/beetroot-theme.git
-$ cd beetroot-theme
-$ npm install
-```
-### 1.2 Install necessary plugins using `bower`:
-```bash
-$ bower install matchHeight --save
+$ git clone http://git.beetroot.se/vromanenko/beetroot-starter.git
+$ rename beetroot-theme folder (better with underscores or together like in 'twentyseventeen')
+$ cd your_theme_name
 ```
 
-### 2. Setup your gulpfile.js:
-
-#### 2.1 Live reload
-Add your local server URL, so LiveReload can refresh browser as you are working on your code :
-
-```javascript
-var URL = 'localhost/myproject'
-```
-
-
-### 3. Setup framework
+### 1.2 Setup framework
 
 To enable one of the pre-installed frameworks, go to theme folder, then open framework-specific folder and simply copy its contents to root theme folder:
 
 ![Framework Setup](http://i.imgur.com/dqVv2T9.gif)
 
+After this delete BOOTSTRAP and FOUNDATION folders.
 Then navigate to main scss file
 `assets\src\scss\style.scss`
 and uncomment import command for this framework:
 
 ![Framework SCSS](http://i.imgur.com/g9saD0q.gif)
 
+### 1.3 Rename files and strings according to the project name
+```bash
+$ in the beginning of functions.php find Text domain definition and replace 'theme_text_domain' to the text domain according to your theme name
+$ find & replace in the whole theme 'beetroot_' and 'beetroot' with the name of your theme
+$ check top comment section in /style.css and assets/src/scss/style.scss for the correct information about the theme
+$ add screenshot.png of your future theme appearance (1200px wide by 900px)
+```
+
+### 2. Install with npm and bower:
+```bash
+$ npm install
+$ bower install
+```
+
+### 3. Setup your gulpfile.js:
+
+#### 3.1 Live reload
+Add your local server URL, so LiveReload can refresh browser as you are working on your code :
+
+```javascript
+var URL = 'localhost/myproject'
+```
+
 ### 4. Run Gulp
 
 While working on your project, run "watch" task from the NPM: `npm run watch`
 When project is done, run `npm run production` to minify CSS, JS and remove unnecessary sourcemaps
+
+### 5. Git commit like 'Theme setup'
 
 ## Overview
 ### 1. Folder structure

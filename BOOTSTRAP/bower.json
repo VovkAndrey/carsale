@@ -7,6 +7,7 @@
   "ignore": [],
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
-    "what-input": "^4.0.3"
+    "what-input": "^4.0.3",
+    "fontawesome": "^4.5.0"
   }
 }

@@ -46,11 +46,11 @@ if ( ! function_exists( 'beetroot_menu_fallback' ) ) :
     function beetroot_menu_fallback() {
         echo '<div class="alert-box secondary">';
         // Translators 1: Link to Menus, 2: Link to Customize.
-        printf( __( 'Please assign a menu to the primary menu location under %1$s or %2$s the design.', 'beetroot' ),
-            sprintf(  __( '<a href="%s">Menus</a>', 'beetroot' ),
+        printf( __( 'Please assign a menu to the primary menu location under %1$s or %2$s the design.', THEME_TD ),
+            sprintf(  __( '<a href="%s">Menus</a>', THEME_TD ),
                 get_admin_url( get_current_blog_id(), 'nav-menus.php' )
             ),
-            sprintf(  __( '<a href="%s">Customize</a>', 'beetroot' ),
+            sprintf(  __( '<a href="%s">Customize</a>', THEME_TD ),
                 get_admin_url( get_current_blog_id(), 'customize.php' )
             )
         );
@@ -82,8 +82,8 @@ if ( ! function_exists( 'beetroot_pagination' ) ) :
             'total' => $wp_query->max_num_pages,
             'mid_size' => 5,
             'prev_next' => true,
-            'prev_text' => __( '&laquo;', 'beetroot' ),
-            'next_text' => __( '&raquo;', 'beetroot' ),
+            'prev_text' => __( '&laquo;', THEME_TD ),
+            'next_text' => __( '&raquo;', THEME_TD ),
             'type' => 'list',
         ) );
         $paginate_links = str_replace( "<ul class='page-numbers'>", "<ul class='pagination'>", $paginate_links );
@@ -127,7 +127,7 @@ if ( ! class_exists( 'beetroot_Comments' ) ) :
          * start_lvl() only goes as high as 1 deep nested comments */
         function __construct() { ?>
 
-            <h3><?php comments_number( __( 'No Responses to', 'beetroot' ), __( 'One Response to', 'beetroot' ), __( '% Responses to', 'beetroot' ) ); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
+            <h3><?php comments_number( __( 'No Responses to', THEME_TD ), __( 'One Response to', THEME_TD ), __( '% Responses to', THEME_TD ) ); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
             <ol class="comment-list">
 
         <?php }
@@ -164,8 +164,8 @@ if ( ! class_exists( 'beetroot_Comments' ) ) :
 
                 <div class="author-meta vcard author">
 
-                    <?php printf( __( '<cite class="fn">%s</cite>', 'beetroot' ), get_comment_author_link() ) ?>
-                    <time datetime="<?php echo comment_date( 'c' ) ?>"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf( __( '%1$s', 'beetroot' ), get_comment_date(),  get_comment_time() ) ?></a></time>
+                    <?php printf( __( '<cite class="fn">%s</cite>', THEME_TD ), get_comment_author_link() ) ?>
+                    <time datetime="<?php echo comment_date( 'c' ) ?>"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf( __( '%1$s', THEME_TD ), get_comment_date(),  get_comment_time() ) ?></a></time>
 
                 </div><!-- /.comment-author -->
 

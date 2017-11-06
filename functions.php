@@ -5,6 +5,11 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  */
 
+/**
+ * Text domain definition
+ */
+defined('THEME_TD') ? THEME_TD : define('THEME_TD', 'theme_text_domain');
+
 // Load modules
 
 $theme_includes = [
@@ -16,14 +21,14 @@ $theme_includes = [
   '/lib/template-tags.php',                  // Custom template tags
   '/lib/menu-areas.php',                     // Menu areas
   '/lib/widget-areas.php',                   // Widget areas
-  'lib/customizer.php',                      // Theme customizer
+  '/lib/customizer.php',                      // Theme customizer
   '/lib/vc_shortcodes.php',                  // Visual Composer shortcodes
   '/lib/jetpack.php'                         // Jetpack compatibility file
 ];
 
 foreach ($theme_includes as $file) {
   if (!$filepath = locate_template($file)) {
-    trigger_error(sprintf(__('Error locating %s for inclusion', 'beetroot'), $file), E_USER_ERROR);
+    trigger_error(sprintf(__('Error locating %s for inclusion', THEME_TD), $file), E_USER_ERROR);
   }
 
   require_once $filepath;
@@ -39,7 +44,7 @@ add_editor_style('assets/dist/css/custom-editor-style.css');
 // Custom CSS for the login page
 
 function loginCSS() {
-    echo '<link rel="stylesheet" type="text/css" href="'.get_template_directory_uri('beetroot').'assets/dist/css/wp-login.css"/>';
+    echo '<link rel="stylesheet" type="text/css" href="'.get_template_directory_uri(THEME_TD).'assets/dist/css/wp-login.css"/>';
 }
 add_action('login_head', 'loginCSS');
 
