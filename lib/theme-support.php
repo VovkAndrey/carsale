@@ -9,7 +9,7 @@ if (!function_exists('beetroot_theme_support')) :
     function beetroot_theme_support()
     {
         // Add language support: @link {https://codex.wordpress.org/Multilingual_WordPress}
-        load_theme_textdomain('beetroot', get_template_directory() . '/languages');
+        load_theme_textdomain(THEME_TD, get_template_directory() . '/languages');
 
         // Add menu support
         add_theme_support('menus');

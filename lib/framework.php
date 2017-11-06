@@ -276,7 +276,7 @@ if ( ! class_exists( 'beetroot_Comments' ) ) :
          * start_lvl() only goes as high as 1 deep nested comments */
         function __construct() { ?>
 
-            <h3><?php comments_number( __( 'No Responses to', 'beetroot' ), __( 'One Response to', 'beetroot' ), __( '% Responses to', 'beetroot' ) ); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
+            <h3><?php comments_number( __( 'No Responses to', THEME_TD ), __( 'One Response to', THEME_TD ), __( '% Responses to', THEME_TD ) ); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
             <ol class="comment-list">
 
         <?php }
@@ -313,8 +313,8 @@ if ( ! class_exists( 'beetroot_Comments' ) ) :
 
                 <div class="author-meta vcard author">
 
-                    <?php printf( __( '<cite class="fn">%s</cite>', 'beetroot' ), get_comment_author_link() ) ?>
-                    <time datetime="<?php echo comment_date( 'c' ) ?>"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf( __( '%1$s', 'beetroot' ), get_comment_date(),  get_comment_time() ) ?></a></time>
+                    <?php printf( __( '<cite class="fn">%s</cite>', THEME_TD ), get_comment_author_link() ) ?>
+                    <time datetime="<?php echo comment_date( 'c' ) ?>"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf( __( '%1$s', THEME_TD ), get_comment_date(),  get_comment_time() ) ?></a></time>
 
                 </div><!-- /.comment-author -->
 
@@ -323,7 +323,7 @@ if ( ! class_exists( 'beetroot_Comments' ) ) :
             <section id="comment-content-<?php comment_ID(); ?>" class="comment">
                 <?php if ( ! $comment->comment_approved ) : ?>
                     <div class="notice">
-                        <p class="bottom"><?php _e( 'Your comment is awaiting moderation.', 'beetroot' ); ?></p>
+                        <p class="bottom"><?php _e( 'Your comment is awaiting moderation.', THEME_TD ); ?></p>
                     </div>
                 <?php else : comment_text(); ?>
                 <?php endif; ?>
