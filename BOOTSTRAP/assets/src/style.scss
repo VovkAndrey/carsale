@@ -33,15 +33,8 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Post archive
 # RTL-specific style
 --------------------------------------------------------------*/
-/*--------------------------------------------------------------
-# FOUNDATION
---------------------------------------------------------------*/
-@import "foundation";
-/*--------------------------------------------------------------
-# Plugins
---------------------------------------------------------------*/
-@import '../../components/slick-carousel/slick/slick-theme.scss';
-@import '../../components/slick-carousel/slick/slick.scss';
+// Bootstrap main file
+@import "bootstrap";
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
