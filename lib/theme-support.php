@@ -48,7 +48,7 @@ if (!function_exists('beetroot_theme_support')) :
 
         // Custom Header
         add_theme_support('custom-header', array(
-            'default-image' => get_template_directory_uri() . 'assets/dist/images/custom-logo.png',
+            'default-image' => get_template_directory_uri() . '/assets/dist/images/custom-logo.png',
             'height' => '200',
             'flex-height' => true,
             'uploads' => true,
