@@ -7,7 +7,7 @@
     @include make-container-max-widths();
   }
   &__row {
-    @include make-row;
+    @include make-row();
   }
   &__brand {
     @include make-col(3);
