@@ -29,13 +29,6 @@ To enable one of the pre-installed frameworks, go to theme folder, then open fra
 
 ![Framework Setup](http://i.imgur.com/dqVv2T9.gif)
 
-After this delete BOOTSTRAP and FOUNDATION folders.
-Then navigate to main scss file
-`assets\src\scss\style.scss`
-and uncomment import command for this framework:
-
-![Framework SCSS](http://i.imgur.com/g9saD0q.gif)
-
 ### 1.3 Rename files and strings according to the project name
 ```bash
 $ in the beginning of functions.php find Text domain definition and replace 'theme_text_domain' to the text domain according to your theme name
