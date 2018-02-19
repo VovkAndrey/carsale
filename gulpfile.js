@@ -13,11 +13,6 @@ const del         = require('del');
 const cleanCSS    = require('gulp-clean-css');
 const uglify      = require('gulp-uglify');
 const notify      = require('gulp-notify');
-// More info about Wiredep config: https://github.com/taptapship/wiredep
-const wiredep     = require('wiredep')({
-  directory: './assets/components',
-  exclude: [ /jquery/, /less/ ]
-});
 
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
@@ -28,22 +23,13 @@ const isProduction = !!(argv.production);
 
 // Browsers to target when prefixing CSS.
 const COMPATIBILITY = [
-  'last 2 versions',
-  'ie >= 9',
-  'Android >= 2.3'
+    'last 2 versions',
+    'ie >= 9',
+    'Android >= 2.3'
 ];
-
-// File paths to various assets are defined here.
-const PATHS = wiredep;
-// Add custom JS
-PATHS.js.push(
-  'assets/src/javascript/plugins/*.js',
-  'assets/src/javascript/scripts.js'
-);
 
 // Browsersync task
 gulp.task('browser-sync', ['build'], function() {
-
   const files = [
     '**/*.php',
     'assets/dist/images/**/*.{png,jpg,gif}'
@@ -60,9 +46,7 @@ gulp.task('browser-sync', ['build'], function() {
 gulp.task('sass', function() {
   return gulp.src('assets/src/scss/style.scss')
     .pipe($.sourcemaps.init())
-    .pipe($.sass({
-      includePaths: PATHS.scss
-    }))
+    .pipe($.sass())
     .on('error', $.notify.onError({
       message: "<%= error.message %>",
       title: "Sass Error"
@@ -82,15 +66,17 @@ gulp.task('sass', function() {
 gulp.task('javascript', function() {
   const uglify = $.uglify()
     .on('error', $.notify.onError({
-      message: "<%= error.message %>",
-      title: "Uglify JS Error"
+        message: "<%= error.message %>",
+        title: "Uglify JS Error"
     }));
 
-  return gulp.src(PATHS.js)
+  return gulp.src([
+    'assets/src/javascript/plugins/*.js',
+    'assets/src/javascript/scripts.js'])
     .pipe($.sourcemaps.init())
     .pipe($.babel())
     .pipe($.concat('global.js', {
-      newLine:'\n;'
+        newLine:'\n;'
     }))
     .pipe($.if(isProduction, uglify))
     .pipe($.if(!isProduction, $.sourcemaps.write()))
@@ -101,25 +87,20 @@ gulp.task('javascript', function() {
 
 // Copy task
 gulp.task('copy', function() {
-  // What Input
-  const whatInput = gulp.src('assets/components/what-input/what-input.js')
+  // Slick
+  const slick = gulp.src('node_modules/slick-carousel/slick/slick.min.js')
     .pipe($.flatten())
     .pipe(gulp.dest('assets/src/javascript/plugins/'));
 
-  // Glyphicons
-  const glyphicons = gulp.src('assets/components/bootstrap-sass/assets/fonts/bootstrap/**/*.*')
-    .pipe(gulp.dest('assets/dist/fonts/bootstrap'));
-
-  return merge(whatInput, glyphicons);
+  return merge(slick);
 });
-
 
 // Build task
 // Runs copy then runs sass & javascript in parallel
 gulp.task('build', ['clean'], function(done) {
   sequence('copy',
-          ['sass', 'javascript'],
-          done);
+    ['sass', 'javascript'],
+    done);
 });
 
 // Clean task
@@ -130,8 +111,8 @@ gulp.task('clean', function(done) {
 // Clean JS
 gulp.task('clean:javascript', function() {
   return del([
-      'assets/dist/javascript/global.js'
-    ]);
+    'assets/dist/javascript/global.js'
+  ]);
 });
 
 // Clean CSS
@@ -170,12 +151,12 @@ gulp.task('default', ['lint', 'build', 'browser-sync'], function() {
   // Sass Watch
   gulp.watch(['assets/src/scss/**/*.scss'], ['clean:css', 'sass'])
     .on('change', function(event) {
-      logFileChange(event);
+        logFileChange(event);
     });
 
   // JS Watch
   gulp.watch(['assets/src/**/*.js'], ['clean:javascript', 'javascript'])
     .on('change', function(event) {
-      logFileChange(event);
+        logFileChange(event);
     });
 });

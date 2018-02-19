@@ -3,7 +3,7 @@
  --------------------------------------------------------------*/
 // Breakpoints (Example: @include breakpoint(tablet) { YOUR CODE GOES HERE } )
 // Foundation Breakpoints
- @mixin breakpoint($point) {
+ @mixin media-query($point) {
    /* Small only */
      @if $point == xs {
           @media screen and (max-width: 39.9375em) {
@@ -61,4 +61,19 @@
     top: 50%;
     left: 50%;
     transform: (translateY(-50%) translateX(-50%));
+}
+
+@mixin input-placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &:-moz-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &:-ms-input-placeholder {
+    @content
+  }
 }

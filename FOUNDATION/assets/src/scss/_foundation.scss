@@ -1,7 +1,7 @@
 //For more info visit this link http://foundation.zurb.com/sites/docs/sass.html
-@import '../../components/foundation-sites/scss/util/util';
+@import '../../../node_modules/foundation-sites/scss/util/util';
 @import 'settings';
-@import '../../components/foundation-sites/scss/foundation';
+@import '../../../node_modules/foundation-sites/scss/foundation';
 // Include all the used foundation components below:
 @include foundation-global-styles;
 @include foundation-flex-grid;
