@@ -1,28 +1,28 @@
-/*jslint node: true */
 "use strict";
 
-var $           = require('gulp-load-plugins')();
-var argv        = require('yargs').argv;
-var gulp        = require('gulp');
-var path        = require('path');
-var browserSync = require('browser-sync').create();
-var merge       = require('merge-stream');
-var sequence    = require('run-sequence');
-var colors      = require('colors');
-var del         = require('del');
-var cleanCSS    = require('gulp-clean-css');
-var uglify      = require('gulp-uglify');
-var notify      = require('gulp-notify');
+const $           = require('gulp-load-plugins')();
+const argv        = require('yargs').argv;
+const gulp        = require('gulp');
+const path        = require('path');
+const browserSync = require('browser-sync').create();
+const eslint      = require('gulp-eslint');
+const merge       = require('merge-stream');
+const sequence    = require('run-sequence');
+const colors      = require('colors');
+const del         = require('del');
+const cleanCSS    = require('gulp-clean-css');
+const uglify      = require('gulp-uglify');
+const notify      = require('gulp-notify');
 
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
-var URL = 'localhost/wp';
+const URL = 'localhost/wp';
 
 // Check for --production flag
-var isProduction = !!(argv.production);
+const isProduction = !!(argv.production);
 
 // Browsers to target when prefixing CSS.
-var COMPATIBILITY = [
+const COMPATIBILITY = [
     'last 2 versions',
     'ie >= 9',
     'Android >= 2.3'
@@ -30,8 +30,7 @@ var COMPATIBILITY = [
 
 // Browsersync task
 gulp.task('browser-sync', ['build'], function() {
-
-    var files = [
+    const files = [
         '**/*.php',
         'assets/dist/images/**/*.{png,jpg,gif}'
     ];
@@ -65,7 +64,7 @@ gulp.task('sass', function() {
 // Combine JavaScript into one file
 // In production, the file is minified
 gulp.task('javascript', function() {
-    var uglify = $.uglify()
+    const uglify = $.uglify()
         .on('error', $.notify.onError({
             message: "<%= error.message %>",
             title: "Uglify JS Error"
@@ -94,12 +93,12 @@ gulp.task('javascript', function() {
 
 // Copy task
 gulp.task('copy', function() {
-    // What Input
-    var whatInput = gulp.src('assets/components/what-input/what-input.js')
+    // Slick
+    const slick = gulp.src('node_modules/slick-carousel/slick/slick.min.js')
         .pipe($.flatten())
         .pipe(gulp.dest('assets/src/javascript/plugins/'));
 
-    return merge(whatInput);
+    return merge(slick);
 });
 
 // Build task
@@ -112,8 +111,7 @@ gulp.task('build', ['clean'], function(done) {
 
 // Clean task
 gulp.task('clean', function(done) {
-    sequence(['clean:javascript', 'clean:css'],
-        done);
+    sequence(['clean:javascript', 'clean:css'], done);
 });
 
 // Clean JS
@@ -131,12 +129,28 @@ gulp.task('clean:css', function() {
     ]);
 });
 
+// ESLint task
+gulp.task('lint', function() {
+    return gulp.src(['assets/src/javascript/scripts.js'])
+        .pipe(eslint({
+            useEslintrc: true
+        }))
+        .pipe(eslint.result(function(result) {
+            console.log(`ESLint result: ${result.filePath}`);
+            console.log(`# Messages: ${result.messages.length}`);
+            console.log(`# Warnings: ${result.warningCount}`);
+            console.log(`# Errors: ${result.errorCount}`);
+        }))
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
 // Default gulp task
 // Run build task and watch for file changes
-gulp.task('default', ['build', 'browser-sync'], function() {
+gulp.task('default', ['lint', 'build', 'browser-sync'], function() {
     // Log file changes to console
     function logFileChange(event) {
-        var fileName = path.relative(__dirname, event.path);
+        const fileName = path.relative(__dirname, event.path);
         console.log('[' + 'WATCH'.green + '] ' + fileName.magenta + ' was ' + event.type + ', running tasks...');
     }
 
