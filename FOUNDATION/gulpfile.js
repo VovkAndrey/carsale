@@ -24,6 +24,18 @@ const COMPATIBILITY = [
     'Android >= 2.3'
 ];
 
+// Declare Paths
+const jsPath = [
+    'node_modules/foundation-sites/dist/js/plugins/foundation.core.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.*',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'assets/src/javascript/plugins/*.js',
+    'assets/src/javascript/scripts.js'
+];
+
 // Browsersync task
 gulp.task('browser-sync', ['build'], () => {
     const files = [
@@ -59,22 +71,14 @@ gulp.task('sass', () => {
 
 // Combine JavaScript into one file
 // In production, the file is minified
-gulp.task('javascript', () => {
+gulp.task('javascript', ['eslint'], () => {
     const uglify = $.uglify()
         .on('error', $.notify.onError({
             message: '<%= error.message %>',
             title: 'Uglify JS Error'
         }));
 
-    return gulp.src([
-        'node_modules/foundation-sites/dist/js/plugins/foundation.core.js',
-        'node_modules/foundation-sites/dist/js/plugins/foundation.util.*',
-        'node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.js',
-        'node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
-        'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.js',
-        'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
-        'assets/src/javascript/plugins/*.js',
-        'assets/src/javascript/scripts.js'])
+    return gulp.src(jsPath)
         .pipe($.sourcemaps.init())
         .pipe($.babel())
         .pipe($.concat('global.js', {
@@ -126,18 +130,18 @@ gulp.task('clean:css', () => {
 });
 
 // ESLint task
-gulp.task('lint', () => {
+gulp.task('eslint', () => {
     return gulp.src(['assets/src/javascript/scripts.js'])
         .pipe(eslint({
             useEslintrc: true
         }))
         .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
+        .pipe(eslint.failOnError());
 });
 
 // Default gulp task
 // Run build task and watch for file changes
-gulp.task('default', ['lint', 'build', 'browser-sync'], () => {
+gulp.task('default', ['build', 'browser-sync'], () => {
     // Log file changes to console
     function logFileChange(event) {
         const fileName = path.relative(__dirname, event.path);
@@ -157,3 +161,4 @@ gulp.task('default', ['lint', 'build', 'browser-sync'], () => {
             logFileChange(event);
         });
 });
+
