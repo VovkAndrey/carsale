@@ -6,21 +6,20 @@
  *    https://github.com/peterkokot/awesome-jquery
  ========================================================================*/
 
-(function ($) {
+(($) => {
     // Scripts that will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
-    $(document).ready(function () {
-        //Uncomment this if you are using Foundation
-        //   $(document).foundation();
+    $(document).ready(() => {
+        // Uncomment this if you are using Foundation
+        // $(document).foundation();
     });
 
     // Scripts that will run after the whole page is loaded (images, videos, iframes. etc)
-    $(window).on('load', function () {
+    $(window).load(() => {
 
     });
 
     // Scripts that will run on window resize
-    $(window).on('resize', function () {
+    $(window).resize(() => {
 
     });
-
 })(jQuery); // Fully reference jQuery after this point.

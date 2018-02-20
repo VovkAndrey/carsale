@@ -1,5 +1,3 @@
-"use strict";
-
 const $           = require('gulp-load-plugins')();
 const argv        = require('yargs').argv;
 const gulp        = require('gulp');
@@ -8,10 +6,8 @@ const browserSync = require('browser-sync').create();
 const eslint      = require('gulp-eslint');
 const merge       = require('merge-stream');
 const sequence    = require('run-sequence');
-const colors      = require('colors');
 const del         = require('del');
 const cleanCSS    = require('gulp-clean-css');
-const uglify      = require('gulp-uglify');
 const notify      = require('gulp-notify');
 
 // Enter URL of your local server here
@@ -29,7 +25,7 @@ const COMPATIBILITY = [
 ];
 
 // Browsersync task
-gulp.task('browser-sync', ['build'], function() {
+gulp.task('browser-sync', ['build'], () => {
     const files = [
         '**/*.php',
         'assets/dist/images/**/*.{png,jpg,gif}'
@@ -43,13 +39,13 @@ gulp.task('browser-sync', ['build'], function() {
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
-gulp.task('sass', function() {
+gulp.task('sass', () => {
     return gulp.src('assets/src/scss/style.scss')
         .pipe($.sourcemaps.init())
         .pipe($.sass())
         .on('error', $.notify.onError({
-            message: "<%= error.message %>",
-            title: "Sass Error"
+            message: '<%= error.message %>',
+            title: 'Sass Error'
         }))
         .pipe($.autoprefixer({
             browsers: COMPATIBILITY
@@ -57,17 +53,17 @@ gulp.task('sass', function() {
         .pipe(cleanCSS())
         .pipe($.if(!isProduction, $.sourcemaps.write('.')))
         .pipe(gulp.dest('assets/dist/css'))
-        .pipe(browserSync.stream({match: '**/*.css'}))
+        .pipe(browserSync.stream({ match: '**/*.css' }))
         .pipe(notify('Compiled: SCSS'));
 });
 
 // Combine JavaScript into one file
 // In production, the file is minified
-gulp.task('javascript', function() {
+gulp.task('javascript', () => {
     const uglify = $.uglify()
         .on('error', $.notify.onError({
-            message: "<%= error.message %>",
-            title: "Uglify JS Error"
+            message: '<%= error.message %>',
+            title: 'Uglify JS Error'
         }));
 
     return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
@@ -86,7 +82,7 @@ gulp.task('javascript', function() {
 });
 
 // Copy task
-gulp.task('copy', function() {
+gulp.task('copy', () => {
     // Slick
     const slick = gulp.src('node_modules/slick-carousel/slick/slick.min.js')
         .pipe($.flatten())
@@ -97,26 +93,26 @@ gulp.task('copy', function() {
 
 // Build task
 // Runs copy then runs sass & javascript in parallel
-gulp.task('build', ['clean'], function(done) {
+gulp.task('build', ['clean'], (done) => {
     sequence('copy',
         ['sass', 'javascript'],
         done);
 });
 
 // Clean task
-gulp.task('clean', function(done) {
+gulp.task('clean', (done) => {
     sequence(['clean:javascript', 'clean:css'], done);
 });
 
 // Clean JS
-gulp.task('clean:javascript', function() {
+gulp.task('clean:javascript', () => {
     return del([
         'assets/dist/javascript/global.js'
     ]);
 });
 
 // Clean CSS
-gulp.task('clean:css', function() {
+gulp.task('clean:css', () => {
     return del([
         'assets/dist/css/style.css',
         'assets/dist/css/style.css.map'
@@ -124,16 +120,10 @@ gulp.task('clean:css', function() {
 });
 
 // ESLint task
-gulp.task('lint', function() {
+gulp.task('lint', () => {
     return gulp.src(['assets/src/javascript/scripts.js'])
         .pipe(eslint({
             useEslintrc: true
-        }))
-        .pipe(eslint.result(function(result) {
-            console.log(`ESLint result: ${result.filePath}`);
-            console.log(`# Messages: ${result.messages.length}`);
-            console.log(`# Warnings: ${result.warningCount}`);
-            console.log(`# Errors: ${result.errorCount}`);
         }))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
@@ -141,22 +131,23 @@ gulp.task('lint', function() {
 
 // Default gulp task
 // Run build task and watch for file changes
-gulp.task('default', ['lint', 'build', 'browser-sync'], function() {
+gulp.task('default', ['lint', 'build', 'browser-sync'], () => {
     // Log file changes to console
     function logFileChange(event) {
         const fileName = path.relative(__dirname, event.path);
+
         console.log('[' + 'WATCH'.green + '] ' + fileName.magenta + ' was ' + event.type + ', running tasks...');
     }
 
     // Sass Watch
     gulp.watch(['assets/src/scss/**/*.scss'], ['clean:css', 'sass'])
-        .on('change', function(event) {
+        .on('change', (event) => {
             logFileChange(event);
         });
 
     // JS Watch
     gulp.watch(['assets/src/**/*.js'], ['clean:javascript', 'javascript'])
-        .on('change', function(event) {
+        .on('change', (event) => {
             logFileChange(event);
         });
 });

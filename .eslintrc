@@ -2,27 +2,9 @@
     "parser": "babel-eslint",
 
     "env": {
+        "browser": true,
+        "jquery": true,
         "es6": true
-    },
-
-    "ecmaFeatures": {
-        "arrowFunctions": true,
-        "blockBindings": true,
-        "classes": true,
-        "defaultParams": true,
-        "destructuring": true,
-        "forOf": true,
-        "generators": false,
-        "modules": true,
-        "objectLiteralComputedProperties": true,
-        "objectLiteralDuplicateProperties": false,
-        "objectLiteralShorthandMethods": true,
-        "objectLiteralShorthandProperties": true,
-        "restParams": true,
-        "spread": true,
-        "superInFunctions": true,
-        "templateStrings": true,
-        "jsx": true
     },
 
     "rules":{
@@ -93,7 +75,7 @@
         "no-useless-call": 2,
         "no-with": 2,
         "radix": 2,
-        "wrap-iife": [2, "outside"],
+        "wrap-iife": [2, "inside"],
         "yoda": 2,
 
         // ES2015
@@ -133,7 +115,6 @@
 
         // Stylistic
         "array-bracket-spacing": [2, "never", {
-            "singleValue": true,
             "objectsInArrays": true,
             "arraysInArrays": true
         }],
@@ -144,9 +125,9 @@
         "comma-style": [2, "last"],
         "computed-property-spacing": [2, "never"],
         "eol-last": 2,
-        "func-names": 1,
+        "func-names": [1, "as-needed"],
         "func-style": [2, "declaration"],
-        "indent": [2, 2, { "SwitchCase": 1 }],
+        "indent": [2, 4, { "SwitchCase": 2 }],
         "jsx-quotes": [2, "prefer-single"],
         "linebreak-style": [2, "unix"],
         "max-len": [2, 128, 4, {
@@ -163,7 +144,7 @@
         "no-nested-ternary": 2,
         "no-new-object": 2,
         "no-spaced-func": 2,
-        "no-trailing-spaces": 2,
+        "no-trailing-spaces": [2, { "skipBlankLines": true }],
         "no-unneeded-ternary": 2,
         "object-curly-spacing": [2, "always"],
         "one-var": [2, "never"],
@@ -188,8 +169,8 @@
         "no-bitwise": 2
     },
 
-     "globals":{
-        "$": true,
-        "ga": true
+    "globals":{
+        "ga": true,
+        "themeVars": true
     }
 }
