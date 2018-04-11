@@ -1,16 +1,11 @@
 # Beetroot Development Theme
-This is a starter-theme for WordPress based on [Underscores](http://underscores.me/) that includes three most popular Front-End frameworks: [Bootstrap](http://getbootstrap.com/), [ZURB Foundation](http://foundation.zurb.com/) and [Susy](http://susy.oddbird.net/). The purpose of this theme, is to act as a small and handy toolbox that contains the essentials needed to build any design, and its meant to be a starting point, not the final product.
+This is a starter-theme for WordPress based on [Underscores](http://underscores.me/) that includes three most popular Front-End frameworks: [Bootstrap](http://getbootstrap.com/) and [ZURB Foundation](http://foundation.zurb.com/). The purpose of this theme, is to act as a small and handy toolbox that contains the essentials needed to build any design, and its meant to be a starting point, not the final product.
 
-All project dependensies can be added with `bower`, and `wiredep` plugin automatically parses their paths and includes during compilation (Please note that for SCSS you still need to use @import tag to include scss file, but thanks to wiredep you can use shortcuts like `../bootstrap` for example)
+All project dependensies can be added with `npm` (Please note that for SCSS you still need to use @import tag to include scss file, but thanks to Webpack you can  Prefix your imports with `~` to grab from node_modules/ @see https://github.com/webpack-contrib/sass-loader#imports)
 
 ## Requirements
 
-This project uses [Gulp task runner](http://gulpjs.com/) that requires [Node.js](http://nodejs.org) v6.x.x  to be installed on your machine. 
-If you haven't installed Gulp CLI on your machine yet, run:
-
-```bash
-$ npm install --global gulp-cli
-```
+This project uses [webpack module bundler](https://webpack.js.org/) that requires [Node.js](http://nodejs.org) v8.9.x  to be installed on your machine. 
 
 ## Quickstart
 
@@ -37,25 +32,51 @@ $ check top comment section in /style.css and assets/src/scss/style.scss for the
 $ add screenshot.png of your future theme appearance (1200px wide by 900px)
 ```
 
-### 2. Install with npm and bower:
+### 2. Install with npm:
 ```bash
 $ npm install
-$ bower install
 ```
-
-### 3. Setup your gulpfile.js:
+or you can use Yarn 
+```bash
+$ yarn
+```
+### 3. Setup your assets/config.json:
 
 #### 3.1 Live reload
 Add your local server URL, so LiveReload can refresh browser as you are working on your code :
 
 ```javascript
-var URL = 'localhost/myproject'
+  "publicPath": "/wp-content/themes/THEME_NAME",
+  "devUrl": "http://DOMAIN.DEV/",
 ```
 
-### 4. Run Gulp
+*`assets/stylesheets/main.scss` — primary theme CSS, barebones partials are imported to help get your styling started
+*`assets/scripts/main.js` — primary theme JS
 
-While working on your project, run "watch" task from the NPM: `npm run watch`
-When project is done, run `npm run production` to minify CSS, JS and remove unnecessary sourcemaps
+#Look at entry in assets/config.json to see how they're built:
+```javascript
+"entry": {
+  "main": [
+    "./scripts/main.js",
+    "./styles/main.scss"
+  ],
+  "customizer": [
+    "./scripts/customizer.js"
+  ]
+}
+```
+To create additional CSS or JS files, you'll need to:
+Create the files within the `assets/scripts/` or `assets/styles/` directories
+Open `assets/config.json` and add the new files to entry in a new array.
+
+###4. Build commands
+* `npm run start` — Compile assets when file changes are made, start Browsersync session
+* `npm run build` — Compile and optimize the files in your assets directory
+* `npm run build:production` — Compile assets for production
+or
+* `yarn run start` — Compile assets when file changes are made, start Browsersync session
+* `yarn run build` — Compile and optimize the files in your assets directory
+* `yarn run build:production` — Compile assets for production
 
 ### 5. Git commit like 'Theme setup'
 
@@ -65,38 +86,31 @@ When project is done, run `npm run production` to minify CSS, JS and remove unne
 ```
 beetroot-theme/
 ├───assets
-│   ├───dist
-│   │   ├───css
-│   │   ├───fonts
-│   │   ├───images
-│   │   └───javascript
-│   └───src
-│       ├───images
-│       ├───javascript
-│       │   └───plugins
-│       └───scss
-│           ├───components
-│           ├───framework
-│           ├───layouts
-│           └───template-parts
+│   ├───build
+│   │   ├───helpers
+│   │   └───util
+│   ├───fonts
+│   ├───images
+│   ├───scripts
+│   │   └───autoload
+│   └───styles
+│       ├───autoload
+│       ├───common
+│       ├───components
+│       └───layouts
+├───dist
+│   ├───scripts
+│   ├───styles
+│   └───vendor
 ├───languages
 ├───lib
-├───template-parts
 ├───page-templates
+├───template-parts
 └───vc_templates
 ```
 ### 2. Javascript
-Write all your project's scripts to `assets\src\javascript\scripts.js`. Separate modules can be placed inside `assets\src\javascript\plugins` folder (Note that those scripts will be added before scripts.js during concatenation)
-All developer scripts from `assets\src\javascript` folder will be concatenated with `bower` dependensies and plugins.
-Sometimes one of the bower parts doesnt automatically includes (this happens if plugin author didnt added correct tags in bower config). To fix this, add relative path to required JS file to PATHS array in gulpfile:
-```javascript
-// Add custom JS
-PATHS.js.push(
-    'assets/src/javascript/plugins/*.js',
-    'assets/src/javascript/scripts.js',
-    'assets/components/matchHeight/dist/jquery.matchHeight.js' // <= Example
-);
-```
+Write all your project's scripts to `assets\scripts\main.js`. Separate modules can be placed inside `assets\scripts\modules\` folder and use es import (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+
 
 ### 3. SCSS
 All SCSS files are split into four main subfolders:
@@ -112,8 +126,57 @@ The `components` folder conains secondary styles, such as core Wordpress classes
 The `layouts` folder is a place for all your page/template specific styles (header/footer, single, 404, etc). Try to avoid writing styles directly in `styles.scss`, its main purpose is to connect all your files for compilation via `@import`.
 The `template-parts` folder should contain styles for reusable Wordpress template parts.
 
+###3rd party packages
+Example of how to add 3rd party packages* and have them included in the theme:
+
+* From the theme directory, run:
+```bash
+# @ themes/your-theme-name/
+$ npm install <package name>
+
+# Install Slick carousel:
+$ npm install slick-carousel
+```
+or
+```bash
+# @ themes/your-theme-name/
+$ yarn add <package name>
+
+# Install Slick carousel:
+$ yarn add slick-carousel
+```
+* Open up main.js and main.scss to add the entry points for the package. If you're using the Slick Carousel then your theme JS and CSS would look like:
+```javascript
+/** import external dependencies */
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
+
+// Import Slick
+import 'slick-carousel/slick/slick.min';
+```
+```scss 
+/* sage/assets/styles/main.scss */
+@import "common/variables";
+
+// Import npm dependencies
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+// Import Slick
+@import "~slick-carousel/slick/slick.scss";
+@import "~slick-carousel/slick/slick-theme.scss";
+```
+* After running yarn run build from the theme directory, your package will be built with your theme assets. The dist folder will contain a _/node_modules/ directory that has any assets referenced from your packages. The compiled CSS and JS will reference these assets without having to manually edit paths. 
+* Running `npm run build:production` or `yarn run build:production` will fail if 3rd party package's relative paths are not configured before imported. In example to load Slick Carousel's paths add the following line in your common/_variables.scss file:
+```scss
+/* sage/assets/styles/common/_variables.scss */
+// Slick Carousel font path
+$slick-font-path: "~slick-carousel/slick/fonts/";
+
+// Slick Carousel ajax-loader.gif path
+$slick-loader-path: "~slick-carousel/slick/";
+```
 ### 4. Images
-Gulp will compress all images from `assets\src\images\` and put them to `assets\dist\images`. If you use FTP/SFTP, only compressed images will be uploaded to server.
+Gulp will compress all images from `assets\images\` and put them to `dist\images`. If you use FTP/SFTP, only compressed images will be uploaded to server.
 ### 5. PHP and `\lib` folder
 
 The `lib` folder contains php files, connected to `functions.php`:
@@ -136,82 +199,31 @@ The theme contains javascript library, that detects user browser, OS and display
 Also, if sidebar is active, `<body>` will have class `has_sidebar`.
 
 #### 5.2 Working with breakpoints
-
-The theme have default mixin that gives you fast and easy way to interact with responsive breakpoints<br>
-
+Use default Bootstrap or Foundation breakpoint mixins
+[Bootstrap](https://getbootstrap.com/docs/4.0/layout/overview/) 
 ```scss
-@mixin breakpoint($point) {
-    // Extra small devices (320px +)
-    @if $point == xs {
-         @media only screen and (min-width : 320px){
-            @content;
-        }
-    }
-    // Small devices (480px +)
-    @else if $point == sm {
-         @media only screen and (min-width : 480px){
-            @content;
-        }
-    }
-    // Tablets (768px +)
-    @else if $point == tb {
-         @media only screen and (min-width : 768px){
-            @content;
-        }
-    }
-    // Medium Devices, Notebooks (992px +)
-    @else if $point == md {
-         @media only screen and (min-width : 992px){
-            @content;
-        }
-    }
-    // Large Devices, Wide Screens
-    @else if $point == desktop {
-         @media only screen and (min-width : 1200px){
-            @content;
-        }
-    }
-}
-```
+@include media-breakpoint-up(xs) { ... }
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
 
-You can add breakpoints directly into css block by adding 
-
-```scss
-@include breakpoint ( /* breakpoint name */ ) { /* breakpoint-specific styles */ }
-```
-
-Example:
-
-![Breakpoint include](http://i.imgur.com/7uIM947.gif)
-
-Compiled result:
-```css
-.myfancyblock {
-  width: 100%;
-}
-@media only screen and (min-width : 992px){
-  .myfancyblock {
-    width: 50%;
+// Example usage:
+@include media-breakpoint-up(sm) {
+  .some-class {
+    display: block;
   }
 }
 ```
-
-If you are PhpStorm user, you can make this process even faster, by adding a [live template](https://www.jetbrains.com/help/phpstorm/10.0/live-templates.html). For this, go to `File > Settings > Editor > Live Templates`, add new template, then enter an abbreviation (for example, word `breakpoint`) and description. In "Template text" field add the following code:
-
+[Foundation](https://foundation.zurb.com/sites/docs/media-queries.html) 
+```scss
+.element {
+  // Only affects medium screens and smaller
+  @include breakpoint(medium down) { }
+  // Only affects medium screens, not small or large
+  @include breakpoint(medium only) { }
+}
 ```
-@include breakpoint ( $END$ ) {}
-```
-
-Then press "Change" at the bottom and select "CSS".
-
-Example:
-
-![Live template](http://i.imgur.com/cgdz3SS.gif)
-
-Now you are able to call breakpoint mixin by simply typing first few letters of its abbreviation and pressing enter:
-
-![Live template example](http://i.imgur.com/HonCC3Y.gif)
-
 ## Test your project
 * [Dummy content generator wpfill.me](http://www.wpfill.me/)
 * [Set of data to test all core Wordress features (post/content formats, multilevel menus, etc)](http://wptest.io/)
