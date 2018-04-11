@@ -29,6 +29,7 @@ $theme_includes = [
 
 foreach ($theme_includes as $file) {
   if (!$filepath = locate_template($file)) {
+    continue;
     trigger_error(sprintf(__('Error locating %s for inclusion', THEME_TD), $file), E_USER_ERROR);
   }
 

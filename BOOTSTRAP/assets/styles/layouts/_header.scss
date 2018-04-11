@@ -1,7 +1,18 @@
-.banner .nav li {
-  @extend .nav-item;
-}
+.header {
+  &__container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
 
-.banner .nav a {
-  @extend .nav-link;
+  &__row {
+    @include make-row();
+  }
+
+  &__brand {
+    @include make-col(3);
+  }
+
+  &__nav {
+    @include make-col(9);
+  }
 }

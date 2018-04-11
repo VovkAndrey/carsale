@@ -1,19 +1,11 @@
 {
   "entry": {
-    "main": [
-      "./scripts/main.js",
-      "./styles/main.scss"
-    ],
-    "customizer": [
-      "./scripts/customizer.js"
-    ]
+    "main": ["./scripts/main.js", "./styles/main.scss"],
+    "customizer": ["./scripts/customizer.js"]
   },
   "publicPath": "/wp-content/themes/beetroot-starter",
   "devUrl": "http://fishy.localhost/",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
-  "watch": [
-    "/page-templates/**/*.php",
-    "/template-parts/**/*.php"
-  ]
+  "watch": ["/page-templates/**/*.php", "/template-parts/**/*.php"]
 }
