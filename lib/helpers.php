@@ -262,7 +262,12 @@ if (!function_exists('dd')) {
 
 if (!function_exists('asset_path')) {
     function asset_path ($asset) {
-        $json = json_decode(file_get_contents(get_template_directory(). '/dist/assets.json'),true);
-        return get_template_directory_uri(). '/dist/'. array_get($json, $asset);
+        if(file_exists((get_template_directory(). '/dist/assets.json'))) {
+            $json = json_decode(file_get_contents(get_template_directory(). '/dist/assets.json'),true);
+            return get_template_directory_uri(). '/dist/'. array_get($json, $asset);
+        } else {
+        return get_template_directory_uri().'/dist/'.$asset;
+        }
+     
     }
 }
