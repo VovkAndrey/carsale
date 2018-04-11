@@ -9,7 +9,7 @@ if (!function_exists('beetroot_scripts')) :
     function beetroot_scripts()
     {
         // Enqueue the main Stylesheet.
-        wp_enqueue_style('main-stylesheet', get_stylesheet_directory_uri() . '/dist/styles/main.css', array(), '1.0.0', 'all');
+        wp_enqueue_style('main-stylesheet', asset_path('styles/main.css') ,  false, null, 'all');
 
         // Deregister the jquery version bundled with WordPress.
         wp_deregister_script('jquery');
@@ -18,7 +18,7 @@ if (!function_exists('beetroot_scripts')) :
         wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-2.2.4.min.js', array(), '2.2.4', false);
 
         // Enqueue the main JS file.
-        wp_enqueue_script('main-javascript', get_stylesheet_directory_uri() . '/dist/scripts/main.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('main-javascript', asset_path('scripts/main.js'), array('jquery'), null, true);
 
         // Throw variables from back to front end.
         $themeVars = array(
