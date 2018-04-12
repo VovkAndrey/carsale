@@ -53,7 +53,7 @@ Add your local server URL, so LiveReload can refresh browser as you are working 
 *`assets/stylesheets/main.scss` — primary theme CSS, barebones partials are imported to help get your styling started
 *`assets/scripts/main.js` — primary theme JS
 
-#Look at entry in assets/config.json to see how they're built:
+Look at entry in assets/config.json to see how they're built:
 ```javascript
 "entry": {
   "main": [
@@ -69,7 +69,7 @@ To create additional CSS or JS files, you'll need to:
 Create the files within the `assets/scripts/` or `assets/styles/` directories
 Open `assets/config.json` and add the new files to entry in a new array.
 
-###4. Build commands
+### 4. Build commands
 * `npm run start` — Compile assets when file changes are made, start Browsersync session
 * `npm run build` — Compile and optimize the files in your assets directory
 * `npm run build:production` — Compile assets for production
@@ -109,7 +109,7 @@ beetroot-theme/
 └───vc_templates
 ```
 ### 2. Javascript
-Write all your project's scripts to `assets\scripts\main.js`. Separate modules can be placed inside `assets\scripts\modules\` folder and use es import (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+Write all your project's scripts to `assets\scripts\main.js`. Separate modules can be placed inside `assets\scripts\modules\` folder and use ES import (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 
 
 ### 3. SCSS
@@ -126,24 +126,24 @@ The `components` folder contains secondary styles, such as core Wordpress classe
 The `layouts` folder is a place for all your page/template specific styles (header/footer, single, 404, etc). Try to avoid writing styles directly in `styles.scss`, its main purpose is to connect all your files for compilation via `@import`.
 The `template-parts` folder should contain styles for reusable Wordpress template parts.
 
-###3rd party packages
-Example of how to add 3rd party packages* and have them included in the theme:
+## 3rd party packages
+Example of how to add 3rd party packages and have them included in the theme:
 
-* From the theme directory, run:
+From the theme directory, run:
+------
 ```
-# @ themes/your-theme-name/
+@ themes/your-theme-name/
 $ npm install <package name>
 
-# Install Slick carousel:
+Install Slick carousel:
 $ npm install slick-carousel
 ```
 or
 
 ``` 
-# @ themes/your-theme-name/
+@ themes/your-theme-name/
 $ yarn add <package name>
-
-# Install Slick carousel:
+Install Slick carousel:
 $ yarn add slick-carousel
 ```
 * Open up main.js and main.scss to add the entry points for the package. If you're using the Slick Carousel then your theme JS and CSS would look like:
@@ -155,7 +155,7 @@ import 'bootstrap/dist/js/bootstrap';
 // Import Slick
 import 'slick-carousel/slick/slick.min';
 ```
-
+------
 ``` 
 /* assets/styles/main.scss */
 @import "common/variables";
@@ -167,6 +167,7 @@ import 'slick-carousel/slick/slick.min';
 @import "~slick-carousel/slick/slick.scss";
 @import "~slick-carousel/slick/slick-theme.scss";
 ```
+
 * After running yarn run build from the theme directory, your package will be built with your theme assets. The dist folder will contain a _/node_modules/ directory that has any assets referenced from your packages. The compiled CSS and JS will reference these assets without having to manually edit paths. 
 * Running `npm run build:production` or `yarn run build:production` will fail if 3rd party package's relative paths are not configured before imported. In example to load Slick Carousel's paths add the following line in your common/_variables.scss file:
 
