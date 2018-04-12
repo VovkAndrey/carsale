@@ -146,8 +146,10 @@ $ yarn add <package name>
 Install Slick carousel:
 $ yarn add slick-carousel
 ```
-* Open up main.js and main.scss to add the entry points for the package. If you're using the Slick Carousel then your theme JS and CSS would look like:
-```javascript
+
+Open up main.js and main.scss to add the entry points for the package. If you're using the Slick Carousel then your theme JS and CSS would look like:
+
+```
 /** import external dependencies */
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
@@ -155,7 +157,9 @@ import 'bootstrap/dist/js/bootstrap';
 // Import Slick
 import 'slick-carousel/slick/slick.min';
 ```
+
 ------
+
 ``` 
 /* assets/styles/main.scss */
 @import "common/variables";
@@ -166,7 +170,9 @@ import 'slick-carousel/slick/slick.min';
 // Import Slick
 @import "~slick-carousel/slick/slick.scss";
 @import "~slick-carousel/slick/slick-theme.scss";
+
 ```
+
 
 * After running yarn run build from the theme directory, your package will be built with your theme assets. The dist folder will contain a _/node_modules/ directory that has any assets referenced from your packages. The compiled CSS and JS will reference these assets without having to manually edit paths. 
 * Running `npm run build:production` or `yarn run build:production` will fail if 3rd party package's relative paths are not configured before imported. In example to load Slick Carousel's paths add the following line in your common/_variables.scss file:
