@@ -1,16 +1,7 @@
 {
-  "name": "sage",
-  "version": "9.0.0",
-  "author": "Roots <team@roots.io>",
-  "homepage": "https://roots.io/sage/",
+  "name": "beetroot",
+  "version": "1.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/roots/sage.git"
-  },
-  "bugs": {
-    "url": "https://github.com/roots/sage/issues"
-  },
   "licenses": [
     {
       "type": "MIT",

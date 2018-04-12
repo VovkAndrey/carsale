@@ -122,7 +122,7 @@ All SCSS files are split into four main subfolders:
 │           └───template-parts
 ```
 
-The `components` folder conains secondary styles, such as core Wordpress classes styling, forms, comments, etc. Put any small, reusable styles (buttons, etc) to `_parts.scss`.
+The `components` folder contains secondary styles, such as core Wordpress classes styling, forms, comments, etc. Put any small, reusable styles (buttons, etc) to `_parts.scss`.
 The `layouts` folder is a place for all your page/template specific styles (header/footer, single, 404, etc). Try to avoid writing styles directly in `styles.scss`, its main purpose is to connect all your files for compilation via `@import`.
 The `template-parts` folder should contain styles for reusable Wordpress template parts.
 
@@ -130,7 +130,7 @@ The `template-parts` folder should contain styles for reusable Wordpress templat
 Example of how to add 3rd party packages* and have them included in the theme:
 
 * From the theme directory, run:
-```bash
+```
 # @ themes/your-theme-name/
 $ npm install <package name>
 
@@ -138,7 +138,8 @@ $ npm install <package name>
 $ npm install slick-carousel
 ```
 or
-```bash
+
+``` 
 # @ themes/your-theme-name/
 $ yarn add <package name>
 
@@ -154,8 +155,9 @@ import 'bootstrap/dist/js/bootstrap';
 // Import Slick
 import 'slick-carousel/slick/slick.min';
 ```
-```scss 
-/* sage/assets/styles/main.scss */
+
+``` 
+/* assets/styles/main.scss */
 @import "common/variables";
 
 // Import npm dependencies
@@ -167,14 +169,15 @@ import 'slick-carousel/slick/slick.min';
 ```
 * After running yarn run build from the theme directory, your package will be built with your theme assets. The dist folder will contain a _/node_modules/ directory that has any assets referenced from your packages. The compiled CSS and JS will reference these assets without having to manually edit paths. 
 * Running `npm run build:production` or `yarn run build:production` will fail if 3rd party package's relative paths are not configured before imported. In example to load Slick Carousel's paths add the following line in your common/_variables.scss file:
-```scss
-/* sage/assets/styles/common/_variables.scss */
+
+```
+/* assets/styles/common/_variables.scss */
 // Slick Carousel font path
 $slick-font-path: "~slick-carousel/slick/fonts/";
-
 // Slick Carousel ajax-loader.gif path
 $slick-loader-path: "~slick-carousel/slick/";
 ```
+
 ### 4. Images
 Gulp will compress all images from `assets\images\` and put them to `dist\images`. If you use FTP/SFTP, only compressed images will be uploaded to server.
 ### 5. PHP and `\lib` folder
