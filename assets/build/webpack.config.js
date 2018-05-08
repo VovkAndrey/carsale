@@ -78,6 +78,7 @@ let webpackConfig = {
         test: /\.scss$/,
         include: config.paths.assets,
         use: ExtractTextPlugin.extract({
+          publicPath: "../",
           fallback: 'style',
           use: [
             { loader: 'cache' },
