@@ -23,6 +23,13 @@
           "function"
         ]
       }
-    ]
+    ],
+    "max-line-length": [
+        120,
+        {
+          "ignorePattern":
+            "(https?://[0-9,a-z]*.*)|(/^transition\\s+/)|(/^background\\s+/)|(/^transform\\s+/)"
+        }
+      ],
   }
 }

@@ -13,6 +13,13 @@
     "extends": "stylelint-config-standard",
     "rules": {
       "no-empty-source": null,
+      "max-line-length": [
+        120,
+        {
+          "ignorePattern":
+            "(https?://[0-9,a-z]*.*)|(/^transition\\s+/)|(/^background\\s+/)|(/^transform\\s+/)"
+        }
+      ],
       "at-rule-no-unknown": [
         true,
         {
@@ -39,9 +46,12 @@
   },
   "scripts": {
     "build": "webpack --progress --config assets/build/webpack.config.js",
-    "build:production": "webpack --progress -p --config assets/build/webpack.config.js",
-    "build:profile": "webpack --progress --profile --json --config assets/build/webpack.config.js",
-    "start": "webpack --hide-modules --watch --config assets/build/webpack.config.js",
+    "build:production":
+      "webpack --progress -p --config assets/build/webpack.config.js",
+    "build:profile":
+      "webpack --progress --profile --json --config assets/build/webpack.config.js",
+    "start":
+      "webpack --hide-modules --watch --config assets/build/webpack.config.js",
     "rmdist": "rimraf dist",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint assets/scripts assets/build",
@@ -76,6 +86,7 @@
     "postcss-safe-parser": "~3.0",
     "prettier": "1.11.1",
     "prettier-eslint": "^8.8.1",
+    "prettier-eslint-cli": "^4.7.1",
     "prettier-stylelint": "^0.4.2",
     "resolve-url-loader": "~2.2.1",
     "rimraf": "~2.6",
@@ -85,19 +96,18 @@
     "stylelint-config-standard": "~18.0.0",
     "stylelint-webpack-plugin": "^0.10.1",
     "url-loader": "^0.6.2",
-    "webpack": "~3.10.0",
+    "webpack": "~3.11.0",
     "webpack-assets-manifest": "^1.0.0",
     "webpack-dev-middleware": "~2.0.4",
     "webpack-hot-middleware": "~2.21.0",
     "webpack-merge": "~4.1.1",
     "yargs": "~11.0.0"
   },
-
   "dependencies": {
-    "bootstrap": "v4.0.0",
+    "bootstrap": "v4.1.1",
+    "font-awesome": "~4.7",
     "foundation-sites": "^6.4.4-rc1",
     "jquery": "^3.3.1",
-    "font-awesome": "~4.7",
     "popper.js": "^1.12.9"
   }
 }
