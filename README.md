@@ -242,16 +242,21 @@ Install prettier as global dependency
 ```text
 npm install --global prettier
 ```
+
+
 ####Then you should configure your IDE
 #####For VS Code 
-At first install Prettier formatter for Visual Studio Code
+At first install package ```Prettier formatter for Visual Studio Code```
+Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
 Then add user settings 
   ```text
     "editor.formatOnSave": true,
     "prettier.eslintIntegration": true,
     "prettier.stylelintIntegration": true,
 ```
+
 #####For PhpStorm
+Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
 For PhpStorm you should create file watchers for js and scss
 
 [Link to file watchers](https://drive.google.com/file/d/1zK5PfHAcGOdSLSBgu_vXlKxWqIkbLiHQ/view?usp=sharing)  
