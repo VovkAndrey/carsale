@@ -234,6 +234,41 @@ Use default Bootstrap or Foundation breakpoint mixins
   @include breakpoint(medium only) { }
 }
 ```
+## Linters and prettier
+In theme we use  [stylelint](https://stylelint.io) and [Eslint](https://eslint.org/) alongide with [phpcs](https://github.com/squizlabs/PHP_CodeSniffer)
+
+You can use all benefits from modern setup with prettier.
+Install prettier as global dependency 
+```text
+npm install --global prettier
+```
+####Then you should configure your IDE
+#####For VS Code 
+At first install Prettier formatter for Visual Studio Code
+Then add user settings 
+  ```text
+    "editor.formatOnSave": true,
+    "prettier.eslintIntegration": true,
+    "prettier.stylelintIntegration": true,
+```
+#####For PhpStorm
+For PhpStorm you should create file watchers for js and scss
+
+[Link to file watchers](https://drive.google.com/file/d/1zK5PfHAcGOdSLSBgu_vXlKxWqIkbLiHQ/view?usp=sharing)  
+After ``` npm install```  you should change path to your cmd file in configuration
+[for scss](https://i.imgur.com/atlez1c.png)
+[and for js](https://i.imgur.com/BadLhrD.png). Also change scope for watchers (https://i.imgur.com/9dOPb6r.png)
+After that watchers will autocorrect most of mistakes
+More about rules you can read on [stylelint.io](https://stylelint.io/user-guide/rules/) and [Eslint recomended](https://eslint.org/docs/rules/)
+
+---
+For use phpcs you need to install phpcs as global package
+```text
+composer global require "squizlabs/php_codesniffer=*"
+```
+The for PhpStorm you can use [this guide](https://confluence.jetbrains.com/display/PhpStorm/PHP+Code+Sniffer+in+PhpStorm)
+For VS Code you can use ```package PHP CS Fixer for Visual Studio Code```
+and add [settings](https://i.imgur.com/z1b66q8.png)
 ## Test your project
 * [Dummy content generator wpfill.me](http://www.wpfill.me/)
 * [Set of data to test all core Wordress features (post/content formats, multilevel menus, etc)](http://wptest.io/)
