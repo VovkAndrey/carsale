@@ -114,7 +114,7 @@ Write all your project's scripts to `assets\scripts\main.js`. Separate modules c
 
 ### 3. SCSS
 All SCSS files are split into four main subfolders:
-
+# Inside scss files ``` ../``` will be resolved as ```/assets``` folder. So inside any scss file if you need use image or font you need write ```../images/name.svg```  not relative path.
 ```
 │       └───scss
 │           ├───components
