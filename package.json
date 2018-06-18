@@ -9,6 +9,7 @@
     }
   ],
   "browserslist": ["last 2 versions", "android 4", "opera 12"],
+  "prettier": {},
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
