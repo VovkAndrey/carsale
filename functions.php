@@ -13,6 +13,7 @@ defined('THEME_TD') ? THEME_TD : define('THEME_TD', 'theme_text_domain');
 // Load modules
 
 $theme_includes = [
+  '/lib/helpers.php',        
   '/lib/cleanup.php',                        // Clean up default theme includes
   '/lib/enqueue-scripts.php',                // Enqueue styles and scripts
   '/lib/protocol-relative-theme-assets.php', // Protocol (http/https) relative assets path
@@ -28,6 +29,7 @@ $theme_includes = [
 
 foreach ($theme_includes as $file) {
   if (!$filepath = locate_template($file)) {
+    continue;
     trigger_error(sprintf(__('Error locating %s for inclusion', THEME_TD), $file), E_USER_ERROR);
   }
 
