@@ -152,10 +152,10 @@ Open up main.js and main.scss to add the entry points for the package. If you're
 ```
 /** import external dependencies */
 import 'jquery';
-import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap';
 
 // Import Slick
-import 'slick-carousel/slick/slick.min';
+import 'slick-carousel';
 ```
 
 ------
@@ -173,7 +173,7 @@ import 'slick-carousel/slick/slick.min';
 
 ```
 
-
+## Important
 * After running yarn run build from the theme directory, your package will be built with your theme assets. The dist folder will contain a _/node_modules/ directory that has any assets referenced from your packages. The compiled CSS and JS will reference these assets without having to manually edit paths. 
 * Running `npm run build:production` or `yarn run build:production` will fail if 3rd party package's relative paths are not configured before imported. In example to load Slick Carousel's paths add the following line in your common/_variables.scss file:
 
@@ -259,7 +259,7 @@ Then add user settings
 Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
 For PhpStorm you should create file watchers for js and scss
 
-[Link to file watchers](https://drive.google.com/file/d/1zK5PfHAcGOdSLSBgu_vXlKxWqIkbLiHQ/view?usp=sharing)  
+[Link to file watchers](https://drive.google.com/file/d/1zRsyFSjv-kbdFm2hz0T4hoYNXFBC01Sa/view?usp=sharing)  
 After ``` npm install```  you should change path to your cmd file in configuration
 [for scss](https://i.imgur.com/atlez1c.png)
 [and for js](https://i.imgur.com/BadLhrD.png). Also change scope for watchers (https://i.imgur.com/9dOPb6r.png)
