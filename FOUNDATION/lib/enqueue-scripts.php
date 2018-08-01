@@ -8,8 +8,12 @@
 if (!function_exists('beetroot_scripts')) :
     function beetroot_scripts()
     {
+        //avoid bugs with watcher and foundation mediaquery.js
+        if (getenv('APP_ENV') == 'development') {
+            wp_enqueue_style('foundation', 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.4-rc1/css/foundation.min.css', false, null, 'all');
+        }
         // Enqueue the main Stylesheet.
-        wp_enqueue_style('main-stylesheet', asset_path('styles/main.css') ,  false, null, 'all');
+        wp_enqueue_style('main-stylesheet', asset_path('styles/main.css'), false, null, 'all');
 
         // Deregister the jquery version bundled with WordPress.
         wp_deregister_script('jquery');

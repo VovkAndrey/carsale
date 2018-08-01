@@ -15,7 +15,7 @@
 <footer id="footer-container" class="site-footer" role="contentinfo">
     <nav class="nav-footer">
         <?php
-        if (has_nav_menu('primary')) :
+        if (has_nav_menu('footer_menu')) :
             wp_nav_menu(['theme_location' => 'footer_menu', 'menu_id' => 'footer-menu', 'walker' => new beetroot_navwalker()]);
         endif;
         ?>
