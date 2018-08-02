@@ -6,7 +6,7 @@ All project dependensies can be added with `npm` (Please note that for SCSS you 
 ## Requirements
 
 This project uses [webpack module bundler](https://webpack.js.org/) that requires [Node.js](http://nodejs.org) v8.9.x  to be installed on your machine. 
-
+PHP7.0+
 ## Quickstart
 
 ### 1. Clone the repository and prepare your theme
@@ -28,9 +28,13 @@ To enable one of the pre-installed frameworks, go to theme folder, then open fra
 ```bash
 $ in the beginning of functions.php find Text domain definition and replace 'theme_text_domain' to the text domain according to your theme name
 $ find & replace in the whole theme 'beetroot_' and 'beetroot' with the name of your theme
-$ check top comment section in /style.css and assets/src/scss/style.scss for the correct information about the theme
+$ check top comment section in /style.css for the correct information about the theme
 $ add screenshot.png of your future theme appearance (1200px wide by 900px)
 ```
+
+### 1.4 Cleenup
+
+Delete Bootstrap and Foundation folders from theme
 
 ### 2. Install with npm:
 ```bash
@@ -108,6 +112,9 @@ beetroot-theme/
 ├───template-parts
 └───vc_templates
 ```
+
+dist folder will be created after build task.
+
 ### 2. Javascript
 Write all your project's scripts to `assets\scripts\main.js`. Separate modules can be placed inside `assets\scripts\modules\` folder and use ES import (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 
@@ -185,8 +192,43 @@ $slick-font-path: "~slick-carousel/slick/fonts/";
 $slick-loader-path: "~slick-carousel/slick/";
 ```
 
+## Linters and prettier
+In theme we use  [stylelint](https://stylelint.io) and [Eslint](https://eslint.org/) alongide with [phpcs](https://github.com/squizlabs/PHP_CodeSniffer)
+
+You can use all benefits from modern setup with prettier.
+Install prettier as global dependency 
+```text
+npm install --global prettier
+```
+
+#### Then you should configure your IDE
+#### For VS Code 
+At first install package ```Prettier formatter for Visual Studio Code```
+Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
+Then add user settings 
+  ```text
+    "editor.formatOnSave": true,
+    "prettier.eslintIntegration": true,
+    "prettier.stylelintIntegration": true,
+```
+
+#### For PhpStorm
+Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
+For PhpStorm you should create file watchers for js and scss
+
+Download exported watchers  [Link to file watchers](https://drive.google.com/file/d/1zRsyFSjv-kbdFm2hz0T4hoYNXFBC01Sa/view?usp=sharing)
+Then import watchers to your project. ``` File -> Settings -> Tools -> File Watcher ``` (http://prntscr.com/kdvhye)
+
+After ``` npm install```  you should change path to your cmd file in watchers configuration
+
+[for scss](https://i.imgur.com/atlez1c.png)
+[and for js](https://i.imgur.com/BadLhrD.png). Also change scope for watchers to trigger watchers only on your files (https://i.imgur.com/9dOPb6r.png)
+After that watchers will autocorrect most of mistakes
+More about rules you can read on [stylelint.io](https://stylelint.io/user-guide/rules/) and [Eslint recomended](https://eslint.org/docs/rules/)
+
+
 ### 4. Images
-Gulp will compress all images from `assets\images\` and put them to `dist\images`. If you use FTP/SFTP, only compressed images will be uploaded to server.
+Webpack will compress all images from `assets\images\` and put them to `dist\images`.
 ### 5. PHP and `\lib` folder
 
 The `lib` folder contains php files, connected to `functions.php`:
@@ -234,37 +276,6 @@ Use default Bootstrap or Foundation breakpoint mixins
   @include breakpoint(medium only) { }
 }
 ```
-## Linters and prettier
-In theme we use  [stylelint](https://stylelint.io) and [Eslint](https://eslint.org/) alongide with [phpcs](https://github.com/squizlabs/PHP_CodeSniffer)
-
-You can use all benefits from modern setup with prettier.
-Install prettier as global dependency 
-```text
-npm install --global prettier
-```
-
-
-#### Then you should configure your IDE
-#### For VS Code 
-At first install package ```Prettier formatter for Visual Studio Code```
-Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
-Then add user settings 
-  ```text
-    "editor.formatOnSave": true,
-    "prettier.eslintIntegration": true,
-    "prettier.stylelintIntegration": true,
-```
-
-#### For PhpStorm
-Move ```.stylelintrc``` and ```.eslintrc.js``` to root of your project
-For PhpStorm you should create file watchers for js and scss
-
-[Link to file watchers](https://drive.google.com/file/d/1zRsyFSjv-kbdFm2hz0T4hoYNXFBC01Sa/view?usp=sharing)  
-After ``` npm install```  you should change path to your cmd file in configuration
-[for scss](https://i.imgur.com/atlez1c.png)
-[and for js](https://i.imgur.com/BadLhrD.png). Also change scope for watchers (https://i.imgur.com/9dOPb6r.png)
-After that watchers will autocorrect most of mistakes
-More about rules you can read on [stylelint.io](https://stylelint.io/user-guide/rules/) and [Eslint recomended](https://eslint.org/docs/rules/)
 
 ---
 For use phpcs you need to install phpcs as global package
