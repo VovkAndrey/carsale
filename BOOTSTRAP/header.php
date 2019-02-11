@@ -55,4 +55,4 @@
 	</div>
 	<!-- /.header__container -->
 </header><!-- .banner -->
-<div id="content" class="site-content">
+<main id="content" class="site-content">

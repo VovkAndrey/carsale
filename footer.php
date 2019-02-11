@@ -10,7 +10,7 @@
 
 ?>
 
-</div><!-- #content -->
+</main><!-- #content -->
 
 <footer id="footer-container" class="site-footer" role="contentinfo">
     <nav class="nav-footer">
