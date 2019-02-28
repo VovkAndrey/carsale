@@ -53,6 +53,7 @@ Add your local server URL, so LiveReload can refresh browser as you are working 
   "publicPath": "/wp-content/themes/THEME_NAME",
   "devUrl": "http://DOMAIN.DEV/",
 ```
+# If you have local domain inside folder ie http://localhost/project-name you should add your folder as prefix to `publicPath`  "LOCALHOS_FOLDER/wp-content/themes/THEME_NAME"
 
 *`assets/stylesheets/main.scss` — primary theme CSS, barebones partials are imported to help get your styling started
 *`assets/scripts/main.js` — primary theme JS
