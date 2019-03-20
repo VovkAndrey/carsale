@@ -1,0 +1,16 @@
+.top-slider_item {
+  position: relative;
+
+  &_image {
+    width: 100%;
+  }
+
+  &_text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    color: white;
+    font-size: 48px;
+  }
+}
+
