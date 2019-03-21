@@ -54,7 +54,7 @@ get_header(); ?>
             echo '</div>';
 
             $image_ids = get_field('gallery', false, false);
-            $shortcode = '[' . 'gallery ids="' . implode(',', $image_ids) . '"]';
+            $shortcode = '[' . 'gallery link="file" ids="' . implode(',', $image_ids) . '"]';
             echo do_shortcode($shortcode);
 
             echo get_field('description');
