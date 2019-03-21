@@ -10,10 +10,8 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
         <section id="main" class="site-main container" role="main">
-
             <?php
             if (have_posts()) : ?>
-
                 <?php
                 /* Start the Loop */
                 while (have_posts()) : the_post();
