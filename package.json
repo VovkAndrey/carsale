@@ -1,5 +1,5 @@
 {
-  "name": "beetroot",
+  "name": "carsale",
   "version": "1.0.0",
   "private": true,
   "licenses": [
@@ -8,7 +8,11 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "browserslist": ["last 2 versions", "android 4", "opera 12"],
+  "browserslist": [
+    "last 2 versions",
+    "android 4",
+    "opera 12"
+  ],
   "prettier": {},
   "stylelint": {
     "extends": "stylelint-config-standard",
@@ -17,8 +21,7 @@
       "max-line-length": [
         120,
         {
-          "ignorePattern":
-            "(https?://[0-9,a-z]*.*)|(/^transition\\s+/)|(/^background\\s+/)|(/^transform\\s+/)"
+          "ignorePattern": "(https?://[0-9,a-z]*.*)|(/^transition\\s+/)|(/^background\\s+/)|(/^transform\\s+/)"
         }
       ],
       "at-rule-no-unknown": [
@@ -48,10 +51,8 @@
   "scripts": {
     "build": "webpack --progress --config assets/build/webpack.config.js",
     "build:production": "webpack --env.production --progress --config assets/build/webpack.config.js",
-    "build:profile":
-      "webpack --progress --profile --json --config assets/build/webpack.config.js",
-    "start":
-      "webpack --hide-modules --watch --config assets/build/webpack.config.js",
+    "build:profile": "webpack --progress --profile --json --config assets/build/webpack.config.js",
+    "start": "webpack --hide-modules --watch --config assets/build/webpack.config.js",
     "rmdist": "rimraf dist",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint assets/scripts assets/build",
@@ -62,6 +63,7 @@
     "node": ">= 6.9.4"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
     "autoprefixer": "~8.2.0",
     "browser-sync": "~2.23.6",
     "browsersync-webpack-plugin": "^0.6.0",
@@ -108,8 +110,10 @@
     "bootstrap": "v4.1.1",
     "font-awesome": "~4.7",
     "foundation-sites": "^6.5.0-rc.2",
-    "motion-ui": "~1.2.2",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.3"
+    "lightbox2": "^2.10.0",
+    "motion-ui": "~1.2.2",
+    "popper.js": "^1.14.3",
+    "slick-carousel": "^1.8.1"
   }
 }

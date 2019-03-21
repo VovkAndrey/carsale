@@ -2,9 +2,16 @@
 
 /** Import everything from autoload */
 @import "./autoload/**/*";
+@import url('https://fonts.googleapis.com/css?family=Cormorant:600i|Open+Sans:700|Palanquin:300&subset=cyrillic');
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import "~lightbox2/src/css/lightbox.css";
+@import "~font-awesome/css/font-awesome.css";
 @import "common/global";
 @import "layouts/header";
+@import "layouts/home";
 @import "layouts/footer";
+@import "layouts/pages";
 
 /**
  * Import npm dependencies

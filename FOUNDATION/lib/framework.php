@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Various functions required for beetroot-foundation to work properly
+ * Various functions required for carsale-foundation to work properly
  *
  *
  */
@@ -23,15 +23,15 @@ if ( ! isset( $content_width ) ) {
  * Learn more about walkers: @link {https://codex.wordpress.org/Class_Reference/Walker}
  *                           @link {https://code.tutsplus.com/tutorials/understanding-the-walker-class--wp-25401}
  */
-if ( ! class_exists( 'beetroot_navwalker' ) ) :
-    class beetroot_navwalker extends Walker_Nav_Menu {
+if ( ! class_exists( 'carsale_navwalker' ) ) :
+    class carsale_navwalker extends Walker_Nav_Menu {
         function start_lvl( &$output, $depth = 0, $args = array() ) {
             $indent = str_repeat("\t", $depth);
             $output .= "\n$indent<ul class=\"dropdown menu vertical\" data-toggle>\n";
         }
     }
-    if ( ! class_exists( 'beetroot_mobile_navwalker' ) ) :
-        class beetroot_mobile_navwalker extends Walker_Nav_Menu {
+    if ( ! class_exists( 'carsale_mobile_navwalker' ) ) :
+        class carsale_mobile_navwalker extends Walker_Nav_Menu {
             function start_lvl( &$output, $depth = 0, $args = array() ) {
                 $indent = str_repeat("\t", $depth);
                 $output .= "\n$indent<ul class=\"vertical nested menu\">\n";
@@ -42,8 +42,8 @@ endif;
 /**
  * A fallback when no navigation is selected by default.
  */
-if ( ! function_exists( 'beetroot_menu_fallback' ) ) :
-    function beetroot_menu_fallback() {
+if ( ! function_exists( 'carsale_menu_fallback' ) ) :
+    function carsale_menu_fallback() {
         echo '<div class="alert-box secondary">';
         // Translators 1: Link to Menus, 2: Link to Customize.
         printf( __( 'Please assign a menu to the primary menu location under %1$s or %2$s the design.', THEME_TD ),
@@ -58,20 +58,20 @@ if ( ! function_exists( 'beetroot_menu_fallback' ) ) :
     }
 endif;
 // Add Foundation 'active' class for the current menu item.
-if ( ! function_exists( 'beetroot_active_nav_class' ) ) :
-    function beetroot_active_nav_class( $classes, $item ) {
+if ( ! function_exists( 'carsale_active_nav_class' ) ) :
+    function carsale_active_nav_class( $classes, $item ) {
         if ( 1 == $item->current || true == $item->current_item_ancestor ) {
             $classes[] = 'active';
         }
         return $classes;
     }
-    add_filter( 'nav_menu_css_class', 'beetroot_active_nav_class', 10, 2 );
+    add_filter( 'nav_menu_css_class', 'carsale_active_nav_class', 10, 2 );
 endif;
 
 // 3 - Pagination: {@link https://codex.wordpress.org/Pagination}
 
-if ( ! function_exists( 'beetroot_pagination' ) ) :
-    function beetroot_pagination() {
+if ( ! function_exists( 'carsale_pagination' ) ) :
+    function carsale_pagination() {
         global $wp_query;
         $big = 999999999; // This needs to be an unlikely integer
         // For more options and info view the docs for paginate_links()
@@ -105,20 +105,20 @@ endif;
  * Use the active class of ZURB Foundation on wp_list_pages output.
  * From required+ Foundation http://themes.required.ch.
  */
-if ( ! function_exists( 'beetroot_active_list_pages_class' ) ) :
-    function beetroot_active_list_pages_class( $input ) {
+if ( ! function_exists( 'carsale_active_list_pages_class' ) ) :
+    function carsale_active_list_pages_class( $input ) {
         $pattern = '/current_page_item/';
         $replace = 'current_page_item active';
         $output = preg_replace( $pattern, $replace, $input );
         return $output;
     }
-    add_filter( 'wp_list_pages', 'beetroot_active_list_pages_class', 10, 2 );
+    add_filter( 'wp_list_pages', 'carsale_active_list_pages_class', 10, 2 );
 endif;
 
 // 4 - Comments tree: @link {https://codex.wordpress.org/Function_Reference/Walker_Comment}
 
-if ( ! class_exists( 'beetroot_Comments' ) ) :
-    class beetroot_Comments extends Walker_Comment{
+if ( ! class_exists( 'carsale_Comments' ) ) :
+    class carsale_Comments extends Walker_Comment{
         // Init classwide variables.
         var $tree_type = 'comment';
         var $db_fields = array( 'parent' => 'comment_parent', 'id' => 'comment_ID' );

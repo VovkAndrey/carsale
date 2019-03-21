@@ -1,6 +1,6 @@
 <?php
 /**
- * Various functions required for beetroot-bootstrap to work properly
+ * Various functions required for carsale-bootstrap to work properly
  *
  */
 /*
@@ -16,11 +16,11 @@ if ( ! isset( $content_width ) ) {
 }
 /**
  * 2 - Menu navigation walker
- * Class Name: beetroot_navwalker
- * GitHub URI: https://github.com/twittem/wp-beetroot-navwalker
- * Description: A custom WordPress nav walker class to implement the beetroot 3 navigation style in a custom theme using the WordPress built in menu manager.
+ * Class Name: carsale_navwalker
+ * GitHub URI: https://github.com/twittem/wp-carsale-navwalker
+ * Description: A custom WordPress nav walker class to implement the carsale 3 navigation style in a custom theme using the WordPress built in menu manager.
  */
-class beetroot_navwalker extends Walker_Nav_Menu {
+class carsale_navwalker extends Walker_Nav_Menu {
     /**
      * @see Walker::start_lvl()
      * @since 3.0.0
@@ -180,10 +180,10 @@ class beetroot_navwalker extends Walker_Nav_Menu {
 }
 /*
  * 3 - Pagination
- * Custom pagination with beetroot .pagination class
- * source: http://www.ordinarycoder.com/paginate_links-class-ul-li-beetroot/
+ * Custom pagination with carsale .pagination class
+ * source: http://www.ordinarycoder.com/paginate_links-class-ul-li-carsale/
  */
-function beetroot_pagination( $echo = true ) {
+function carsale_pagination( $echo = true ) {
     global $wp_query;
     $big = 999999999; // need an unlikely integer
     $pages = paginate_links( array(
@@ -213,11 +213,11 @@ function beetroot_pagination( $echo = true ) {
 }
 /**
  * 4 - Comments tree
- * beetroot Comments Tree
+ * carsale Comments Tree
  *
  */
-if ( ! class_exists( 'beetroot_Comments' ) ) :
-    class beetroot_Comments extends Walker_Comment{
+if ( ! class_exists( 'carsale_Comments' ) ) :
+    class carsale_Comments extends Walker_Comment{
         // Init classwide variables.
         var $tree_type = 'comment';
         var $db_fields = array( 'parent' => 'comment_parent', 'id' => 'comment_ID' );

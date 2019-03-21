@@ -8,7 +8,7 @@
 /**
  * Text domain definition
  */
-defined('THEME_TD') ? THEME_TD : define('THEME_TD', 'theme_text_domain');
+defined('THEME_TD') ? THEME_TD : define('THEME_TD', 'carsale');
 
 // Load modules
 
@@ -83,3 +83,23 @@ add_filter('login_errors', 'wp_login_obscure');
 
 // Disable the theme / plugin text editor in Admin
 define('DISALLOW_FILE_EDIT', true);
+
+function debug_to_console($data)
+{
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
+}
+
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page();
+}
+
+function add_light_gallery_attribute($link)
+{
+    return str_replace('>', ' data-lightbox="image">', $link);
+}
+
+add_filter('wp_get_attachment_link', 'add_light_gallery_attribute', 10, 2);

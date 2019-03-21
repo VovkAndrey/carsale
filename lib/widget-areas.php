@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function beetroot_widgets_init()
+function carsale_widgets_init()
 {
     register_sidebar(array(
         'name' => esc_html__('Sidebar', THEME_TD),
@@ -16,4 +16,4 @@ function beetroot_widgets_init()
         'after_title' => '</h2>',
     ));
 }
-add_action('widgets_init', 'beetroot_widgets_init');
+add_action('widgets_init', 'carsale_widgets_init');

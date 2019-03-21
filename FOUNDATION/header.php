@@ -44,7 +44,7 @@
 						'menu_id'         => 'primary-menu',
 						'menu_class'      => 'nav-primary__menu menu',
 						'items_wrap'      => '<ul id="%1$s" class="%2$s" data-responsive-menu="drilldown large-dropdown" data-parent-link="true">%3$s</ul>',
-						'walker'          => new beetroot_navwalker()
+						'walker'          => new carsale_navwalker()
 					] );
 				endif;
 				?>

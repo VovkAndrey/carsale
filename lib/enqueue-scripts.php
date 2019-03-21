@@ -5,8 +5,8 @@
  * Learn more about enqueue_script: {@link https://codex.wordpress.org/Function_Reference/wp_enqueue_script}
  * Learn more about enqueue_style: {@link https://codex.wordpress.org/Function_Reference/wp_enqueue_style}
  */
-if (!function_exists('beetroot_scripts')) :
-    function beetroot_scripts()
+if (!function_exists('carsale_scripts')) :
+    function carsale_scripts()
     {
         // Enqueue the main Stylesheet.
         wp_enqueue_style('main-stylesheet', asset_path('styles/main.css') ,  false, null, 'all');
@@ -33,7 +33,7 @@ if (!function_exists('beetroot_scripts')) :
         endif;
     }
 
-    add_action('wp_enqueue_scripts', 'beetroot_scripts');
+    add_action('wp_enqueue_scripts', 'carsale_scripts');
 endif;
 
 if (file_exists(get_template_directory() . '/feedback/feedback.php')) :

@@ -13,13 +13,10 @@
 </main><!-- #content -->
 
 <footer id="footer-container" class="site-footer" role="contentinfo">
-    <nav class="nav-footer">
-        <?php
-        if (has_nav_menu('footer_menu')) :
-            wp_nav_menu(['theme_location' => 'footer_menu', 'menu_id' => 'footer-menu', 'walker' => new beetroot_navwalker()]);
-        endif;
-        ?>
-    </nav><!-- .nav-primary -->
+    <?php
+    echo do_shortcode(get_field('contact_form_shortcode', 'option'));
+    echo '<p class="copyright">' . get_field('copyright', 'option') . '</p>';
+    ?>
 </footer><!-- #colophon -->
 
 <?php wp_footer(); ?>

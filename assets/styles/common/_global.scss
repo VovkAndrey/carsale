@@ -1,1 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: $text-font-family;
+  font-size: 16px;
+  color: $base-color;
+}
+
+h1 {
+  font-family: $title-font-family;
+}
+
+h2 {
+  font-family: $subtitle-font-family;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    color: $secondary-color;
+  }
+
+  &:visited {
+    color: $base-color;
+  }
+}

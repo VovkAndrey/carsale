@@ -18,11 +18,11 @@
 <body <?php body_class(); ?>>
 <header class="banner">
 	<div class="container">
-		<a class="brand" href="<?php esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+		<a class="brand" href="<?php echo esc_url(home_url('/')); ?>"><?php echo wp_get_attachment_image(get_field('logo', 'option'), array(100,100)); ?></a>
 		<nav class="nav-primary">
 			<?php
 			if (has_nav_menu('primary')) :
-				wp_nav_menu(['theme_location' => 'primary', 'menu_id' => 'primary-menu', 'walker' => new beetroot_navwalker()]);
+				wp_nav_menu(['theme_location' => 'primary', 'menu_id' => 'primary-menu', 'walker' => new carsale_navwalker()]);
 			endif;
 			?>
 		</nav><!-- .nav-primary -->

@@ -44,7 +44,7 @@
 						'container_id'    => 'primaryNavBar',
 						'menu_class'      => 'navbar-nav',
 						'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-						'walker'          => new beetroot_navwalker()
+						'walker'          => new carsale_navwalker()
 					] );
 				endif;
 				?>

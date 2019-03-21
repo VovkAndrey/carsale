@@ -1,0 +1,34 @@
+.menu {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  align-items: center;
+  font-family: $title-font-family;
+
+  & li {
+    margin-left: 20px;
+    font-size: 2rem;
+
+    & a:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.container,
+#footer-container {
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  max-width: $content-max-width;
+}
+
+.nav-primary {
+  display: flex;
+}
+
+.brand {
+  line-height: 0;
+}

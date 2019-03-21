@@ -5,8 +5,8 @@
  * @link https://codex.wordpress.org/Function_Reference/add_theme_support
  */
 
-if (!function_exists('beetroot_theme_support')) :
-    function beetroot_theme_support()
+if (!function_exists('carsale_theme_support')) :
+    function carsale_theme_support()
     {
         // Add language support: @link {https://codex.wordpress.org/Multilingual_WordPress}
         load_theme_textdomain(THEME_TD, get_template_directory() . '/languages');
@@ -56,5 +56,5 @@ if (!function_exists('beetroot_theme_support')) :
         ));
     }
 
-    add_action('after_setup_theme', 'beetroot_theme_support');
+    add_action('after_setup_theme', 'carsale_theme_support');
 endif;
