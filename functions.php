@@ -103,3 +103,49 @@ function add_light_gallery_attribute($link)
 }
 
 add_filter('wp_get_attachment_link', 'add_light_gallery_attribute', 10, 2);
+
+function show_car_block($args)
+{
+    $the_query = new WP_Query($args);
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) :
+            $the_query->the_post();
+            echo '<a href="' . get_post_permalink() . '">';
+            echo '<div class="showroom__item">';
+            $args = array(
+                'taxonomy' => 'car_brand_and_model',
+                'hide_empty' => true,
+                'number' => '1',
+                'object_ids' => $post->ID,
+                'parent' => '0'
+            );
+            $terms = get_terms($args);
+            foreach ($terms as $term) {
+                $child_args = array(
+                    'taxonomy' => 'car_brand_and_model',
+                    'hide_empty' => true,
+                    'object_ids' => $post->ID,
+                    'parent' => $term->term_id,
+                );
+                $child_terms = get_terms($child_args);
+                foreach ($child_terms as $child_term) {
+                    echo '<p>' . $term->name . ' ' . $child_term->name . ' </p>';
+                }
+            }
+
+            $args = array(
+                'taxonomy' => 'car_engine',
+                'hide_empty' => true,
+                'number' => '1',
+                'object_ids' => $post->ID,
+            );
+            $terms = get_terms($args);
+            echo '<p>' . $terms[0]->name . '</p>';
+            echo '<p>' . get_field('mileage') . ' miles';
+            echo '<p> $' . get_field('price');
+            echo '</div>';
+            echo '</a>';
+        endwhile;
+        wp_reset_query();
+    endif;
+}
